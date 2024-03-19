@@ -1,0 +1,129 @@
+body{
+    box-sizing: border-box;
+    color: #000000;
+}
+
+@media screen and (max-width: 768px){
+    .offcanvas{
+        width: 100%;
+    }
+}
+
+.offcanvas-btn{
+    color: #FFFFFF;
+    background: #000000;
+    border-radius: 2px;
+}
+
+.line{
+    height: 2px;
+    background: #d5d4d5;
+}
+
+.result{
+    color: #212529;
+}
+
+.banner .banner-img{
+    width: 100vw;
+    height: 20rem;
+    object-fit: cover;
+    object-position: 50% 50%;
+    filter: brightness(50%);
+}
+
+.banner .banner-text{
+    position: absolute;
+    top: 10rem; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    color: #F4F0EC; 
+    padding: 10px 20px; 
+    font-size: 20px; 
+    text-align: center;
+}
+
+.card .carousel-inner img{
+    height: 20rem;
+}
+
+.card-body small{
+    color: #212529;
+    font-style: italic;
+}
+
+.card-body .price-color{
+    color: #f20000;
+}
+
+.card-body button{
+    background-color: #F4F0EC;
+    color: #212529;
+}
+
+.card-body ul{
+    list-style: none;
+}
+
+.card-body i{
+    color: #FDD43B;
+}
+
+.sort-name input {
+    background-color: transparent !important;
+    border: 1px solid #000000;
+    border-radius: 5px;
+}
+
+.sort-name input::placeholder {
+    padding-left: 2px;
+}
+
+.sort-price button:hover{
+    transition: 0.5s;
+    color: #F4F0EC;
+    background-color: #dc3545;
+}
+
+.sort-price .active{
+    color: #F4F0EC;
+    background-color: #dc3545;
+}
+
+.sort-price ul{
+    list-style: none;
+    padding: 0;
+}
+
+.sort-price ul li{
+    display: inline-block;
+    color: #d5d4d5;
+}
+
+.sort-price ul li:last-child{
+    float: right;
+}
+
+.sort-rating ul{
+    list-style: none;
+}
+
+.sort-rating ul li i:hover{
+    color: #FDD43B;
+}
+
+.offcanvas{
+    background-color: #F4F0EC;
+}
+
+.truncate{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+}
+
+.btn-blue-light{
+    background-color: #93ccea;
+    color: #f8f8f8;
+}

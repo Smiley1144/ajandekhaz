@@ -8,6 +8,4 @@ import { ProductModel } from 'src/app/models/product.model';
 })
 export class ProductService {
 
-  constructor(private http: HttpClient) { }
-
 }
