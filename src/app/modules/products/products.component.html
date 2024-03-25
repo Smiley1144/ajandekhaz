@@ -98,10 +98,10 @@
     </div>
   </div>
 
-  <div *ngIf="productList.length >= 1" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-3 px-lg-5 px-md-5 px-sm-3"> 
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-3 px-lg-5 px-md-5 px-sm-3"> 
     
-    <div *ngFor="let product of filteredProducts, index as i" class="col px-3">
-      <div class="card shadow" (click)="goToProductDetails(i+1)">
+    <div class="col px-3">
+      <div class="card shadow">
         <div id="carouselExampleFade" class="carousel slide carousel-fade">
           <div class="carousel-inner">
             <div class="carousel-item active">
@@ -126,22 +126,16 @@
             </button>
           </div>
           <div class="card-body">
-            <h5 class="card-title">{{ product.name }}</h5>
-            <small>{{ product.brand }}</small>
-            <p class="card-text truncate mt-2">{{ product.description }}</p>
+            <h5 class="card-title">Név</h5>
+            <small>Márka</small>
+            <p class="card-text truncate mt-2">Leírás</p>
             <div class="text-center">
               <!-- <button type="button" class="btn btn-info text-light">Részletek</button> -->
-              <p>Price: <span class="price-color fw-bold">${{ product.price }}</span></p>
+              <p>Price: <span class="price-color fw-bold">Ár</span></p>
             </div>
             <div class="d-flex justify-content-between">
-              <button type="button" class="btn" [routerLink]="['/products/details', i + 1]">Részletek</button>
-              <ul *ngIf="product.averageRating > 0; else noReviews" class="d-flex">
-                <span class="me-2">{{product.averageRating}}</span>
-                <li *ngFor="let rating of ' '.repeat(product.averageRating).split('')">
-                  <i class="fa-solid fa-star"></i>
-                </li>
-              </ul>
-              <ng-template #noReviews>No reviews yet.</ng-template>
+              <button type="button" class="btn">Részletek</button>
+              
             </div>
           </div>
         </div>
