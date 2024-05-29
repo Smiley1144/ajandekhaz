@@ -68,9 +68,4 @@ export class ProductsComponent implements OnInit {
     this.activeButton = active;
   }
 
-  selectBrand(brand: string): void {
-    this.selectedBrand = brand;
-    this.filteredProducts = this.productList.filter(product => product.brand === this.selectedBrand);
-  }
-
 }

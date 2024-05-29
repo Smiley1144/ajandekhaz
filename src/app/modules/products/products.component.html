@@ -69,14 +69,6 @@
                 </div>
               </div>
       
-              <div class="sort-gender my-3">
-                <label class="me-2" for="">Sort by brand:</label>
-                <div class="btn-group-vertical m-1" role="group" aria-label="Vertical radio toggle button group"  *ngFor="let product of productList; index as i">
-                  <input type="radio" class="btn-check" name="vbtn-radio" [attr.id]="product.brand" autocomplete="off">
-                  <label class="btn btn-outline-danger" [attr.for]="product.brand" (click)="selectBrand(product.brand)">{{ product.brand }}</label>
-                </div>
-              </div>
-      
               <div class="sort-rating my-3">
                 <label for="">Sort by rating:</label>
                 <ul class="p-0 mt-2">
@@ -100,7 +92,7 @@
 
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-3 px-lg-5 px-md-5 px-sm-3"> 
     
-    <div class="col px-3">
+    <div *ngFor="let product in productList" class="col px-3">
       <div class="card shadow">
         <div id="carouselExampleFade" class="carousel slide carousel-fade">
           <div class="carousel-inner">

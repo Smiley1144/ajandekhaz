@@ -7,5 +7,6 @@ import { ProductModel } from 'src/app/models/product.model';
   providedIn: 'root'
 })
 export class ProductService {
-
+  
 }
+
