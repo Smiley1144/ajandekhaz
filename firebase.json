@@ -1,1 +1,9 @@
-{}
+{
+  "hosting": [
+    {
+      "target": "ajandekhaz",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}

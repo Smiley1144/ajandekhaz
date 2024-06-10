@@ -7,6 +7,10 @@ import { FormsModule } from '@angular/forms';
 import { ProductsComponent } from './modules/products/products.component';
 import { CartComponent } from './modules/cart/cart.component';
 import { NavBarComponent } from './modules/nav-bar/nav-bar.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -19,6 +23,9 @@ import { NavBarComponent } from './modules/nav-bar/nav-bar.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
   ],
   providers: [],
   bootstrap: [AppComponent]

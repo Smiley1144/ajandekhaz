@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ajandekhaz-cebff": {
+      "hosting": {
+        "ajandekhaz": [
+          "ajandekhaz-cebff"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ajandekhaz-cebff"
+  }
+}
