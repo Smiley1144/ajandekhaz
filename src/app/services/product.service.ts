@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ProductService {
   private readonly productCollectionRef = collection(this.firestore, 'products')
- 
+  
   constructor(private firestore: Firestore) {
     
   }

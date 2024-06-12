@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-import { ProductService } from 'src/app/services/product.service';
+import { Observable, Subscription } from 'rxjs';
 import { ProductModel } from 'src/app/models/product.model';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-products',
@@ -20,6 +20,7 @@ export class ProductsComponent implements OnInit {
   highButton: string = '';
   activeButton: string | null = null;
   selectedBrand: string | null = null;
+  // products$: Observable<ProductModel[]> = new Observable();
 
   constructor(private productService: ProductService, private router: Router) { }
 
@@ -27,6 +28,22 @@ export class ProductsComponent implements OnInit {
     this.lowButton = (document.getElementById('low') as HTMLButtonElement).value;
     this.midButton = (document.getElementById('mid') as HTMLButtonElement).value;
     this.highButton = (document.getElementById('high') as HTMLButtonElement).value;
+
+    // this.products$ = this.productService.getProductsWithGetDocs();
+
+    this.subProduct = this.productService.getProductsWithGetDocs().subscribe({
+      next: (product: ProductModel[]) => {
+        this.productList = product;
+        this.filteredProducts = product;
+        console.log(product);
+      },
+      error: (err) => {
+        console.log(err);
+      },
+      complete: () => {
+        console.log('Product request is done!');
+      }
+    })
   }
 
   goToProductDetails(index: number):void {
