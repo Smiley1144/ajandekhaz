@@ -12,6 +12,7 @@ import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { WelcomePageComponent } from './modules/welcome-page/welcome-page.component';
+import { SliderComponent } from './modules/welcome-page/slider/slider.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { WelcomePageComponent } from './modules/welcome-page/welcome-page.compon
     ProductsComponent,
     CartComponent,
     NavBarComponent,
-    WelcomePageComponent
+    WelcomePageComponent,
+    SliderComponent
   ],
   imports: [
     BrowserModule,
