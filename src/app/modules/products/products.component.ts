@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { QueryDocumentSnapshot } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, of } from 'rxjs';
 import { ProductModel } from 'src/app/models/product.model';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -10,7 +11,7 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
-  subProduct?: Subscription
+  subProduct!: Subscription
   productList: ProductModel[] = []
   searchTerm: string = '';
   filteredProducts: ProductModel[] = []
@@ -20,7 +21,8 @@ export class ProductsComponent implements OnInit {
   highButton: string = '';
   activeButton: string | null = null;
   selectedBrand: string | null = null;
-  // products$: Observable<ProductModel[]> = new Observable();
+  products$: Observable<{ products: ProductModel[], lastDoc: QueryDocumentSnapshot<any> | null }> = of({ products: [], lastDoc: null });
+  lastDoc!: QueryDocumentSnapshot;
 
   constructor(private productService: ProductService, private router: Router) { }
 
@@ -29,7 +31,9 @@ export class ProductsComponent implements OnInit {
     this.midButton = (document.getElementById('mid') as HTMLButtonElement).value;
     this.highButton = (document.getElementById('high') as HTMLButtonElement).value;
 
-    // this.products$ = this.productService.getProductsWithGetDocs();
+    this.products$ = of({ products: [], lastDoc: null });
+
+    this.loadProducts();
 
     this.subProduct = this.productService.getProductsWithGetDocs().subscribe({
       next: (product: ProductModel[]) => {
@@ -44,6 +48,38 @@ export class ProductsComponent implements OnInit {
         console.log('Product request is done!');
       }
     })
+  }
+
+  loadProducts(lastDoc?: QueryDocumentSnapshot<any>) {
+    if (lastDoc) {
+      this.products$ = this.productService.getProductsWithPagination(lastDoc);
+    } else {
+      this.products$ = this.productService.getProductsWithPagination();
+    }
+
+    this.subProduct = this.products$.subscribe({
+      next: ({ products, lastDoc }) => {
+        this.productList = products;
+        this.lastDoc = lastDoc as QueryDocumentSnapshot<any>;
+        console.log('Products received in component: ', products);
+      },
+      error: (err) => {
+        console.log('Error: ', err);
+      },
+      complete: () => {
+        console.log('Product request is done!');
+      }
+    });
+  }
+
+  nextPage() {
+    if (this.lastDoc) {
+      this.loadProducts(this.lastDoc);
+    }
+  }
+
+  previousPage() {
+    // Implement previous page logic if needed
   }
 
   goToProductDetails(index: number):void {
