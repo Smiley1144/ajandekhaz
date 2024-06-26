@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ProductService {
   private readonly productCollectionRef = collection(this.firestore, 'gifts');
-  private readonly pageSize = 10;
+  private readonly pageSize = 12;
   
   constructor(private firestore: Firestore) {
     

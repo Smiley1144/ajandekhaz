@@ -72,6 +72,10 @@ export class ProductsComponent implements OnInit {
     });
   }
 
+  img2Exists(product: any): boolean {
+    return product.hasOwnProperty('img2');
+  }
+
   nextPage() {
     if (this.lastDoc) {
       this.loadProducts(this.lastDoc);
