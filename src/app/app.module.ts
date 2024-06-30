@@ -13,6 +13,7 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { WelcomePageComponent } from './modules/welcome-page/welcome-page.component';
 import { SliderComponent } from './modules/welcome-page/slider/slider.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { SliderComponent } from './modules/welcome-page/slider/slider.component'
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
