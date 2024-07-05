@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QueryDocumentSnapshot } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { Observable, Subscription, of } from 'rxjs';
+import { Observable, Subscription, map, of } from 'rxjs';
 import { ProductModel } from 'src/app/models/product.model';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -27,6 +27,7 @@ export class ProductsComponent implements OnInit {
   constructor(private productService: ProductService, private router: Router) { }
 
   ngOnInit(): void {
+    
     this.lowButton = (document.getElementById('low') as HTMLButtonElement).value;
     this.midButton = (document.getElementById('mid') as HTMLButtonElement).value;
     this.highButton = (document.getElementById('high') as HTMLButtonElement).value;
@@ -48,6 +49,7 @@ export class ProductsComponent implements OnInit {
         console.log('Product request is done!');
       }
     })
+    
   }
 
   loadProducts(lastDoc?: QueryDocumentSnapshot<any>) {
@@ -60,6 +62,7 @@ export class ProductsComponent implements OnInit {
     this.subProduct = this.products$.subscribe({
       next: ({ products, lastDoc }) => {
         this.productList = products;
+        this.filteredProducts = products;
         this.lastDoc = lastDoc as QueryDocumentSnapshot<any>;
         console.log('Products received in component: ', products);
       },

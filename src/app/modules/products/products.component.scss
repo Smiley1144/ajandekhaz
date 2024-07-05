@@ -69,10 +69,11 @@ body{
     color: #FDD43B;
 }
 
-.sort-name input {
+input {
     background-color: transparent !important;
     border: 1px solid #000000;
     border-radius: 5px;
+    padding: 3px;
 }
 
 .sort-name input::placeholder {

@@ -9,10 +9,13 @@
 
   <div class="px-lg-5 px-md-5 px-sm-3">
 
-  <div class="mt-4">
-    <button class="btn offcanvas-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Mutasd a szűrőket</button>
-    <button class="btn offcanvas-btn mx-4 d-none d-md-inline" type="button" (click)="clearSeachTerm()">Keresési szűrők törlése</button>
-    <div class="result fw-bold float-end pe-2">{{ filteredProducts.length }} találat</div>
+  <div class="row">
+
+    <div class="mt-4">
+      <input class="ms-2" type="text" [(ngModel)]="searchTerm" placeholder="Name" (keyup)="filterProducts()">
+      <div class="result fw-bold float-end pe-2">{{ filteredProducts.length }} találat</div>
+    </div>
+
   </div>
   
     <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
@@ -27,7 +30,7 @@
               <hr>
               <div class="sort-name my-3">
                 <label for="">Sort by name:</label>
-                <input class="ms-2" type="text" placeholder="Name" (keyup)="filterProducts()">
+                
               </div>
       
               <div class="sort-price my-3">
@@ -90,8 +93,8 @@
     </div>
   </div>
 
-  <div *ngIf="products$ | async as data" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-3 px-lg-5 px-md-5 px-sm-3"> 
-    <div *ngFor="let gift of data.products" class="col px-3">
+  <div *ngIf="filterProducts" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-3 px-lg-5 px-md-5 px-sm-3 pb-5"> 
+    <div *ngFor="let gift of filteredProducts" class="col px-3">
       <div class="card shadow">
         <div [id]="'carouselExampleFade_' + gift.id" class="carousel slide carousel-fade">
           <div class="carousel-inner">
@@ -113,7 +116,7 @@
         </div>
         <div class="card-body">
           <h5 class="card-title">{{gift.name}}</h5>
-          <p class="card-text truncate mt-2">{{ gift.description }}</p>
+          <p class="card-text truncate mt-2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita suscipit doloremque tempore inventore quam perferendis modi magnam officiis ex totam numquam voluptates velit voluptate sapiente ab qui nam, at odit?</p>
           <div class="text-center">
             <p>Price: <span class="price-color fw-bold">{{ gift.price }} Ft</span></p>
           </div>
@@ -124,19 +127,6 @@
       </div>
     </div>
   </div>
-  <nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center pt-5">
-      <li class="page-item cursor-pointer" [class.disabled]="!lastDoc">
-        <a class="page-link text-dark" (click)="previousPage()">Previous</a>
-      </li>
-      <li class="page-item" *ngFor="let button of [1, 2, 3]">
-        <a class="page-link text-dark" href="#" (click)="loadProducts()">{{ button }}</a>
-      </li>
-      <li class="page-item cursor-pointer" [class.disabled]="!lastDoc">
-        <a class="page-link text-dark" (click)="nextPage()">Next</a>
-      </li>
-    </ul>
-  </nav>
 </section>
 <router-outlet></router-outlet>
 
