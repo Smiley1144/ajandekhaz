@@ -5,7 +5,8 @@
   crossorigin="anonymous"
   referrerpolicy="no-referrer"
 />
-<app-nav class="z-3" [background]="''" [position]="'fixed-top'"></app-nav>
+
+<app-nav-bar></app-nav-bar>
 
 <section class="h-100 gradient-custom">
   <div class="container py-5">
@@ -21,15 +22,14 @@
             />
             <h5 class="mb-0">Your Cart</h5>
           </div>
-          <div *ngIf="cartList.length > 0" class="card-body">
-            <div *ngFor="let product of cartList" class="row">
+          <div *ngIf="productList.length > 0" class="card-body">
+            <div *ngFor="let product of productList" class="row">
               <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
                 <div
-                  *ngFor="let img of product.productDetails.fileRegistryDtoList"
                   class="bg-image hover-overlay hover-zoom ripple rounded"
                   data-mdb-ripple-color="light"
                 >
-                  <img [src]="img.filePath" class="w-100" [alt]="img.title" />
+                  <img [src]="product.img" class="w-100" />
                   <a href="#!">
                     <div class="mask" style="background-color: #212529"></div>
                   </a>
@@ -38,12 +38,10 @@
 
               <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
                 <p>
-                  <strong>Name: {{ product.productDetails.name }}</strong>
+                  <strong>Name: {{ product.name }}</strong>
                 </p>
-                <p>Color: {{ product.productDetails.color }}</p>
-                <p>Size: {{ product.productDetails.size }}</p>
-                <p>Sex: {{ product.productDetails.sex.toLowerCase() }}</p>
-                <p>Stock: {{ product.productDetails.stock }}</p>
+                <p>Color: {{ product.description }}</p>
+                <p>Size: {{ product.price }}</p>
                 <button
                   type="button"
                   class="btn btn-primary btn-sm me-1 mb-2"
@@ -85,7 +83,6 @@
                 <div class="d-flex mb-4" style="max-width: 300px">
                   <button
                     class="btn btn-custom px-3 me-2"
-                    (click)="decrementQuantity(product)"
                   >
                     <i class="fas fa-minus"></i>
                   </button>
@@ -95,7 +92,6 @@
                       id="form1"
                       min="0"
                       name="quantity"
-                      [value]="product.quantity"
                       type="number"
                       class="form-control"
                     />
@@ -104,7 +100,6 @@
 
                   <button
                     class="btn btn-custom px-3 ms-2"
-                    (click)="incrementQuantity(product)"
                   >
                     <i class="fas fa-plus"></i>
                   </button>
@@ -113,7 +108,7 @@
                 <p class="text-start text-md-center">
                   <strong
                     >${{
-                      product.productDetails.price * product.quantity
+                      product.price
                     }}</strong
                   >
                 </p>
