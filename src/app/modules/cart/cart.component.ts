@@ -6,6 +6,7 @@ import { ProductService } from 'src/app/services/product.service';
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss'],
+  styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent {
   productList: ProductModel[] = []
