@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="/">Ajándékház</a>
     <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
@@ -8,25 +8,47 @@
     <div class="collapse navbar-collapse" [ngClass]="{ show: navbarOpen }">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/home" routerLinkActive="active" (click)="setActive('home')">Home</a>
+          <a
+            class="nav-link"
+            routerLink="/home"
+            routerLinkActive="active"
+            (click)="setActive('home')"
+            >Home</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/products" routerLinkActive="active" (click)="setActive('products')"
+          <a
+            class="nav-link"
+            routerLink="/products"
+            routerLinkActive="active"
+            (click)="setActive('products')"
             >Termékek</a
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/favourites" routerLinkActive="active" (click)="setActive('favourites')"
+          <a
+            class="nav-link"
+            routerLink="/favourites"
+            routerLinkActive="active"
+            (click)="setActive('favourites')"
             >Kedvencek</a
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/cart" routerLinkActive="active" (click)="setActive('cart')"
+          <a
+            class="nav-link"
+            routerLink="/cart"
+            routerLinkActive="active"
+            (click)="setActive('cart')"
             >Kosár</a
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/login" routerLinkActive="active" (click)="setActive('login')"
+          <a
+            class="nav-link"
+            routerLink="/login"
+            routerLinkActive="active"
+            (click)="setActive('login')"
             >Bejelentkezés</a
           >
         </li>
