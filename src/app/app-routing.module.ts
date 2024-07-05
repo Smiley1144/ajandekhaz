@@ -7,6 +7,7 @@ import { NavBarComponent } from './modules/nav-bar/nav-bar.component';
 
 const routes: Routes = [
   { path: '', component: WelcomePageComponent },
+  { path: 'home', component: WelcomePageComponent },
   { path: 'products', component: ProductsComponent },
   { path: 'cart', component: CartComponent },
   { path: 'navBar', component: NavBarComponent },
