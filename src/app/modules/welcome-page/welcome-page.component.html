@@ -48,7 +48,7 @@
 
   <!-- Carousel -->
 
-  <div id="carouselExampleCaptions" class="carousel slide carousel-fade"
+  <div id="carouselExampleCaptions" class="carousel slide carousel-fade d-none d-md-block"
   style="height: 50dvw; max-height: 700px;"
   data-bs-ride="carousel"
   data-bs-touch="false">
@@ -58,25 +58,61 @@
       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" class=" bg-warning" aria-label="Slide 3"></button>
     </div>
     <div class="carousel-inner">
-      <div class="carousel-item active image-size">
+      <div class="carousel-item carousel-item-pc active image-size">
         <img src="https://images.unsplash.com/photo-1577042939454-8b29d442b402?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100" alt="...">
         <div class="carousel-caption d-md-block">
           <h5>Ajándék ünnepekre?</h5>
           <p>Gyakran előfordul, hogy már nincsen ötletünk egy ünnepi ajándékra...</p>
         </div>
       </div>
-      <div class="carousel-item image-size">
+      <div class="carousel-item carousel-item-pc image-size">
         <img src="https://images.unsplash.com/photo-1512909006721-3d6018887383?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100" alt="...">
         <div class="carousel-caption d-md-block">
           <h5>Vagy ajándék csak úgy spontán?</h5>
           <p>Előfordul, hogy meg szeretnénk lepni szeretteinket, barátainkat...</p>
         </div>
       </div>
-      <div class="carousel-item image-size">
+      <div class="carousel-item carousel-item-pc image-size">
         <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100" alt="...">
         <div class="carousel-caption d-md-block">         
-          <h5>Ajándék szülinapra?</h5>
+          <h5>Esetleg ajándék szülinapra?</h5>
           <p>Sokszor egyedi ajándékot szeretnénk adni, de nem találunk...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile -->
+  <div class="carousel-container d-md-none p-0 mb-5">
+    <div id="carouselExampleCaptionsMobile" class="carousel slide carousel-fade d-block d-md-none"
+    data-bs-ride="carousel"
+    data-bs-touch="false">
+      <div class="carousel-indicators mb-5">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active bg-warning" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" class=" bg-warning" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" class=" bg-warning" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active image-size-mobile">
+          <img src="https://images.unsplash.com/photo-1481708426686-bad08e28e1c2?q=80&w=1927&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-md-block">
+            <h5>Ajándék ünnepekre?</h5>
+            <p>Gyakran előfordul, hogy már nincsen ötletünk egy ünnepi ajándékra...</p>
+          </div>
+        </div>
+        <div class="carousel-item image-size-mobile">
+          <img src="https://plus.unsplash.com/premium_photo-1674068279759-d8da1c6c7df7?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-md-block">
+            <h5>Vagy ajándék csak úgy spontán?</h5>
+            <p>Előfordul, hogy meg szeretnénk lepni szeretteinket, barátainkat...</p>
+          </div>
+        </div>
+        <div class="carousel-item image-size-mobile">
+          <img src="https://images.unsplash.com/photo-1648055820454-f3ac9e9011ed?q=80&w=1936&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-md-block">         
+            <h5>Esetleg ajándék szülinapra?</h5>
+            <p>Sokszor egyedi ajándékot szeretnénk adni, de nem találunk...</p>
+          </div>
         </div>
       </div>
     </div>
@@ -85,7 +121,7 @@
   <!-- H1 text -->
 
   <div class="offers text-center">
-    <h1 class="mt-5">Aktuális ajánlataink:</h1>
+    <h1 class="mt-5">Megoldást tudunk Neked kínálni az aktuális ajánlatainkkal:</h1>
   </div>
 
   <!-- Offers -->
