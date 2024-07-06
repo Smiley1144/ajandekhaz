@@ -1,0 +1,15 @@
+.container-fluid{
+    height: 300px;
+    background-color: #141414;
+    box-sizing: border-box;
+    .map{
+        height: 300px;
+        margin: 0 auto;
+        color: #fefefa;
+        iframe{
+            width: 100%;
+            height: 100%;
+
+        }
+    }
+}
