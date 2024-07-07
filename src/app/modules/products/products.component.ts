@@ -36,13 +36,12 @@ export class ProductsComponent implements OnInit {
       next: (product: ProductModel[]) => {
         this.productList = product;
         this.filteredProducts = product;
-        console.log(product);
       },
       error: (err) => {
-        console.log(err);
+        
       },
       complete: () => {
-        console.log('Product request is done!');
+        
       }
     })
     

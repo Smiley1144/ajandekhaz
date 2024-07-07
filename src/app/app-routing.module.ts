@@ -4,6 +4,7 @@ import { ProductsComponent } from './modules/products/products.component';
 import { CartComponent } from './modules/cart/cart.component';
 import { WelcomePageComponent } from './modules/welcome-page/welcome-page.component';
 import { NavBarComponent } from './modules/nav-bar/nav-bar.component';
+import { DetailsComponent } from './modules/products/details/details.component';
 
 const routes: Routes = [
   { path: '', component: WelcomePageComponent },
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'products', component: ProductsComponent },
   { path: 'cart', component: CartComponent },
   { path: 'navBar', component: NavBarComponent },
+  { path: 'products/details/:id', component: DetailsComponent},
 ];
 
 @NgModule({

@@ -94,8 +94,8 @@
   </div>
 
   <div *ngIf="filterProducts" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-3 px-lg-5 px-md-5 px-sm-3 pb-5 col-10 mx-auto col-md-12"> 
-    <div *ngFor="let gift of filteredProducts" class="col px-3">
-      <div class="card shadow">
+    <div *ngFor="let gift of filteredProducts, index as i" class="col px-3">
+      <div class="card shadow" (click)="goToProductDetails(i+1)">
         <div [id]="'carouselExampleFade_' + gift.id" class="carousel slide carousel-fade">
           <div class="carousel-inner">
             <div class="carousel-item active">
@@ -121,7 +121,7 @@
             <p>Price: <span class="price-color fw-bold">{{ gift.price }} Ft</span></p>
           </div>
           <div class="d-flex justify-content-between">
-            <button type="button" class="btn">Részletek</button>
+            <button type="button" class="btn" [routerLink]="['/products/details', i + 1]">Részletek</button>
           </div>
         </div>
       </div>

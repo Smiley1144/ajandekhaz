@@ -33,35 +33,8 @@ getProductsWithGetDocs(): Observable<ProductModel[]> {
   );
 }
 
-  //* Get products with pagination
-
-  getProductsWithPagination(lastDoc?: QueryDocumentSnapshot<any> | null): Observable<{ products: ProductModel[], lastDoc: QueryDocumentSnapshot<any> | null }> {
-    let q;
-    if (lastDoc) {
-      q = query(this.productCollectionRef, orderBy('name'), startAfter(lastDoc), limit(this.pageSize));
-    } else {
-      q = query(this.productCollectionRef, orderBy('name'), limit(this.pageSize));
-    }
-
-    return from(getDocs(q)).pipe(
-      map((snapshot) => {
-        const resultList = snapshot.docs.map((doc) => {
-          const productData: ProductModel = doc.data() as ProductModel;
-          productData.id = doc.id;
-          return productData;
-        });
-        const lastVisible = snapshot.docs.length > 0 ? snapshot.docs[snapshot.docs.length - 1] : null;
-        return { products: resultList, lastDoc: lastVisible };
-      }),
-      catchError((error) => {
-        console.error('Error fetching documents: ', error);
-        return of({ products: [], lastDoc: null });
-      })
-    );
-  }
-
   //* Get only one product
-  getProductWithGetDoc(id: string){
+  getProductWithGetDoc(id: number){
     const productDoc = doc(this.firestore, `product/${id}`);
     return from(getDoc(productDoc)).pipe(
       map((doc) => {
