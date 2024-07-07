@@ -15,6 +15,7 @@ import { WelcomePageComponent } from './modules/welcome-page/welcome-page.compon
 import { SliderComponent } from './modules/welcome-page/slider/slider.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FooterComponent } from './modules/footer/footer.component';
+import { DetailsComponent } from './modules/products/details/details.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { FooterComponent } from './modules/footer/footer.component';
     NavBarComponent,
     WelcomePageComponent,
     SliderComponent,
-    FooterComponent
+    FooterComponent,
+    DetailsComponent
   ],
   imports: [
     BrowserModule,
