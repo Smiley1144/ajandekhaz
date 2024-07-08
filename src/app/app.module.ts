@@ -14,6 +14,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { WelcomePageComponent } from './modules/welcome-page/welcome-page.component';
 import { SliderComponent } from './modules/welcome-page/slider/slider.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FooterComponent } from './modules/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CartComponent,
     NavBarComponent,
     WelcomePageComponent,
-    SliderComponent
+    SliderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,79 @@
+.container {
+  color: #f4f0ec;
+}
+
+.footer {
+  visibility: hidden;
+  transform: translateY(100%);
+}
+
+.widget-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.widget-list-item {
+  margin-bottom: 0.5rem;
+  opacity: 0.8;
+}
+
+.btn-social {
+  display: inline-block;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: 1px solid rgba(0, 0, 0, 0);
+  transition: border-color 0.25s ease-in-out, background-color 0.25s ease-in-out,
+    color 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+  border-radius: 0.3125rem;
+  background-color: #f3f5f9;
+  color: #4b566b;
+  font-size: 0.875rem;
+  text-align: center;
+  text-decoration: none !important;
+}
+
+.btn-social,
+.bs-light {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.btn-social > i {
+  line-height: 2.125rem;
+}
+
+.twit-bg:hover {
+  background-color: #fff;
+  color: #1da1f2;
+}
+
+.face-bg:hover {
+  background-color: #fff;
+  color: #3b5998;
+}
+
+.inst-bg:hover {
+  background-color: #fff;
+  color: #5851db;
+}
+
+.pint-bg:hover {
+  background-color: #fff;
+  color: #bd081c;
+}
+
+.yout-bg:hover {
+  background-color: #fff;
+  color: red;
+}
+
+.d-flex > i {
+  color: #e0cba8;
+}
+
+h6,
+small {
+  opacity: 0.9;
+}
