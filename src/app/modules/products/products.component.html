@@ -93,7 +93,7 @@
     </div>
   </div>
 
-  <div *ngIf="filterProducts" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-3 px-lg-5 px-md-5 px-sm-3 pb-5"> 
+  <div *ngIf="filterProducts" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-3 px-lg-5 px-md-5 px-sm-3 pb-5 col-10 mx-auto col-md-12"> 
     <div *ngFor="let gift of filteredProducts" class="col px-3">
       <div class="card shadow">
         <div [id]="'carouselExampleFade_' + gift.id" class="carousel slide carousel-fade">
