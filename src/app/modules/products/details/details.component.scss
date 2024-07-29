@@ -1,0 +1,39 @@
+.container {
+    background-color: #f8f9fa;
+    border-radius: 15px;
+    padding: 30px;
+  }
+  
+  h1.display-4 {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  p.lead {
+    font-size: 1.2rem;
+    color: #555;
+  }
+  
+  .text-primary {
+    font-size: 2.5rem;
+  }
+  
+  button.btn-lg {
+    padding: 10px 20px;
+    font-size: 1.1rem;
+  }
+  
+  button.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+  }
+  
+  button.btn-outline-primary {
+    border-color: #007bff;
+    color: #007bff;
+  }
+  
+  button.btn-outline-primary:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
