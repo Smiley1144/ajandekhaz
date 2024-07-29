@@ -51,8 +51,8 @@ export class ProductsComponent implements OnInit {
     return product.hasOwnProperty('img2');
   }
 
-  goToProductDetails(index: number):void {
-    this.router.navigate(['products/details/', index]);
+  goToProductDetails(index: number): void {
+    this.router.navigate(['products/details', index]);
   }
 
   filterProducts() {

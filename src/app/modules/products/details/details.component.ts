@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { ProductModel } from 'src/app/models/product.model';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -11,6 +12,8 @@ import { ProductService } from 'src/app/services/product.service';
 export class DetailsComponent implements OnInit {
 
   product?: ProductModel;
+  subProduct!: Subscription
+  productList: ProductModel[] = []
   
   constructor(
     private productService: ProductService, 
@@ -18,21 +21,24 @@ export class DetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+
     this.route.params.subscribe(params => {
-      const productId = +params['id'];
-      this.loadProductDetails(productId);
+      const productIndex = +params['id']; // Az URL-ből indexet olvasunk ki
+      this.loadProductDetails(productIndex);
     });
   }
 
-  loadProductDetails(id: number): void {
-    this.productService.getProductWithGetDoc(id).subscribe({
-        next: (data) => {
-          this.product = data;
-        },
-        error: (err) => {
-          console.log(err);
-        }
-      });
-    }
+  loadProductDetails(productIndex: number): void {
+    this.subProduct = this.productService.getProductByIndex(productIndex).subscribe({
+      next: (data) => {
+        this.product = data;
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    });
+  }
+
 
 }
