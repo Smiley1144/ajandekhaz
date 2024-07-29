@@ -78,7 +78,7 @@
           <h5 class="card-title">{{gift.name}}</h5>
           <p class="card-text truncate mt-2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita suscipit doloremque tempore inventore quam perferendis modi magnam officiis ex totam numquam voluptates velit voluptate sapiente ab qui nam, at odit?</p>
           <div class="text-center">
-            <p>Price: <span class="price-color fw-bold">{{ gift.price }} Ft</span></p>
+            <p>Price: <span class="price-color fw-bold">{{ gift.price | currency: 'HUF'}} Ft</span></p>
           </div>
           <div class="d-flex justify-content-between">
             <button type="button" class="btn" [routerLink]="['/products/details', i + 1]">Részletek</button>
