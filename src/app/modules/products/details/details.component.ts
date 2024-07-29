@@ -24,7 +24,7 @@ export class DetailsComponent implements OnInit {
 
 
     this.route.params.subscribe(params => {
-      const productIndex = +params['id']; // Az URL-ből indexet olvasunk ki
+      const productIndex = +params['id'] - 1; // Az URL-ből indexet olvasunk ki
       this.loadProductDetails(productIndex);
     });
   }

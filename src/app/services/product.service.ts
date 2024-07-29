@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Firestore, QueryDocumentSnapshot, collection, doc, getDoc, getDocs, limit, orderBy, query, startAfter } from '@angular/fire/firestore';
-import { Observable, catchError, from, map, of } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, from, map, of, switchMap } from 'rxjs';
 import { ProductModel } from 'src/app/models/product.model';
 import { environment } from 'src/environments/environment';
 
@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
 export class ProductService {
   private readonly productCollectionRef = collection(this.firestore, 'gifts');
   private productIds: { [key: number]: string } = {};
+  private productIdsLoaded = new BehaviorSubject<boolean>(false);
   
   constructor(private firestore: Firestore) {
     this.initializeProductIds();
@@ -19,8 +20,11 @@ export class ProductService {
   private initializeProductIds(): void {
     getDocs(this.productCollectionRef).then(snapshot => {
       snapshot.docs.forEach((doc, index) => {
-        this.productIds[index] = doc.id; // Tároljuk az indexeket és a Firestore ID-kat
+        this.productIds[index] = doc.id; // Indexek és Firestore ID-k tárolása
       });
+      this.productIdsLoaded.next(true); // Jelzés az indexek betöltéséről
+    }).catch(error => {
+      console.error("Error initializing product IDs: ", error);
     });
   }
 
@@ -61,13 +65,21 @@ getProductWithGetDoc(id: string): Observable<ProductModel | undefined> {
   );
 }
 
-  getProductByIndex(index: number): Observable<ProductModel | undefined> {
-    const firestoreId = this.productIds[index];
-    if (!firestoreId) {
-      console.error(`No product found with index ${index}`);
-      return of(undefined);
-    }
-    return this.getProductWithGetDoc(firestoreId);
-  }
+getProductByIndex(index: number): Observable<ProductModel | undefined> {
+  return this.productIdsLoaded.pipe(
+    switchMap(loaded => {
+      if (loaded) {
+        const firestoreId = this.productIds[index];
+        if (!firestoreId) {
+          console.error(`No product found with index ${index}`);
+          return of(undefined);
+        }
+        return this.getProductWithGetDoc(firestoreId);
+      } else {
+        return of(undefined);
+      }
+    })
+  );
+}
 }
 
