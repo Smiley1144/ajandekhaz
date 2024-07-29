@@ -18,7 +18,7 @@
               src="https://www.svgrepo.com/show/425141/cart-trolley-buy-2.svg"
               alt="Cart"
             />
-            <h5 class="mb-0">Your Cart</h5>
+            <h5 class="mb-0">Az Ön kosara</h5>
           </div>
           <div *ngIf="productList.length > 0" class="card-body">
             <div *ngFor="let product of productList" class="row">
@@ -36,10 +36,10 @@
 
               <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
                 <p>
-                  <strong>Name: {{ product.name }}</strong>
+                  <strong>Termék: {{ product.name }}</strong>
                 </p>
-                <p>Color: {{ product.description }}</p>
-                <p>Size: {{ product.price }}</p>
+                <p>Szín: {{ product.description }}</p>
+                <p>Méret: {{ product.price }}</p>
                 <button
                   type="button"
                   class="btn btn-primary btn-sm me-1 mb-2"
@@ -79,9 +79,7 @@
 
               <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
                 <div class="d-flex mb-4" style="max-width: 300px">
-                  <button
-                    class="btn btn-custom px-3 me-2"
-                  >
+                  <button class="btn btn-custom px-3 me-2">
                     <i class="fas fa-minus"></i>
                   </button>
 
@@ -96,19 +94,13 @@
                     <label class="form-label" for="form1">Quantity</label>
                   </form>
 
-                  <button
-                    class="btn btn-custom px-3 ms-2"
-                  >
+                  <button class="btn btn-custom px-3 ms-2">
                     <i class="fas fa-plus"></i>
                   </button>
                 </div>
 
                 <p class="text-start text-md-center">
-                  <strong
-                    >${{
-                      product.price
-                    }}</strong
-                  >
+                  <strong>${{ product.price }}</strong>
                 </p>
               </div>
               <hr class="my-4" />
@@ -117,13 +109,13 @@
         </div>
         <div class="card mb-4">
           <div class="card-body">
-            <p><strong>Expected shipping delivery</strong></p>
+            <p><strong>Várható házhozszállítás </strong></p>
             <p class="mb-0">2024.02.21. - 2024.02.24.</p>
           </div>
         </div>
         <div class="card mb-4 mb-lg-0">
           <div class="card-body">
-            <p><strong>We accept</strong></p>
+            <p><strong>Elfogadunk</strong></p>
             <img
               class="me-2"
               width="45px"
@@ -148,29 +140,29 @@
       <div class="col-md-4">
         <div class="card mb-4">
           <div class="card-header py-3">
-            <h5 class="mb-0">Summary</h5>
+            <h5 class="mb-0">Összesítés</h5>
           </div>
           <div class="card-body">
             <ul class="list-group list-group-flush">
               <li
                 class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0"
               >
-                Products
+                Termékek
                 <!-- <span>${{ totalAmount }}</span> -->
               </li>
               <li
                 class="list-group-item d-flex justify-content-between align-items-center px-0"
               >
-                Shipping
+                Szállítás
                 <span>Gratis</span>
               </li>
               <li
                 class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3"
               >
                 <div>
-                  <strong>Total amount</strong>
+                  <strong>Teljes összeg</strong>
                   <strong>
-                    <p class="mb-0">(including VAT)</p>
+                    <p class="mb-0">(az áfát tartalmazza)</p>
                   </strong>
                 </div>
                 <!-- <span
@@ -193,7 +185,7 @@
                 data-bs-target="#offcanvasRight"
                 aria-controls="offcanvasRight"
               >
-                Go to checkout
+                Kifizetem
               </button>
 
               <div
@@ -203,7 +195,7 @@
                 aria-labelledby="offcanvasRightLabel"
               >
                 <div class="card-header py-3">
-                  <h5 class="mb-0">Billing address</h5>
+                  <h5 class="mb-0">Számlázási cím</h5>
                 </div>
                 <div class="offcanvas-body">
                   <div class="container">
@@ -214,7 +206,7 @@
                         <form class="needs-validation" novalidate>
                           <div class="row">
                             <div class="col-md-6 mb-3">
-                              <label for="firstName">First name</label>
+                              <label for="firstName">Vezetéknév</label>
                               <input
                                 type="text"
                                 class="form-control"
@@ -224,11 +216,11 @@
                                 required
                               />
                               <div class="invalid-feedback">
-                                Valid first name is required.
+                                Hibás vezetéknév!
                               </div>
                             </div>
                             <div class="col-md-6 mb-3">
-                              <label for="lastName">Last name</label>
+                              <label for="lastName">Keresztnév</label>
                               <input
                                 type="text"
                                 class="form-control"
@@ -238,13 +230,13 @@
                                 required
                               />
                               <div class="invalid-feedback">
-                                Valid last name is required.
+                                Hibás keresztnév!
                               </div>
                             </div>
                           </div>
 
                           <div class="mb-3">
-                            <label for="username">Username</label>
+                            <label for="username">Felhasználónév</label>
                             <div class="input-group">
                               <div class="input-group-prepend">
                                 <span class="input-group-text">@</span>
@@ -257,7 +249,7 @@
                                 required
                               />
                               <div class="invalid-feedback" style="width: 100%">
-                                Your username is required.
+                                Hibás felhasználónév!
                               </div>
                             </div>
                           </div>
@@ -273,10 +265,7 @@
                               id="email"
                               placeholder="example@example.com"
                             />
-                            <div class="invalid-feedback">
-                              Please enter a valid email address for shipping
-                              updates!
-                            </div>
+                            <div class="invalid-feedback">Hibás email cím!</div>
                           </div>
 
                           <div class="mb-3">
@@ -295,25 +284,23 @@
 
                           <div class="row">
                             <div class="col-md-5 mb-3">
-                              <label for="country">Country</label>
+                              <label for="country">Ország</label>
                               <select
                                 class="custom-select d-block w-100"
                                 id="country"
                                 required
                               >
-                                <option value="">Choose...</option>
-                                <option>United States</option>
-                                <option>Hungary</option>
-                                <option>China</option>
-                                <option>Russia</option>
+                                <option value="">Válassz...</option>
+                                <option>USA</option>
+                                <option>Magyarország</option>
+                                <option>Kína</option>
+                                <option>Oroszország</option>
                               </select>
-                              <div class="invalid-feedback">
-                                Please select a valid country.
-                              </div>
+                              <div class="invalid-feedback">Hivás ország!</div>
                             </div>
 
                             <div class="col-md-3 mb-3">
-                              <label for="zip">Zip</label>
+                              <label for="zip">Irányítószám</label>
                               <input
                                 type="text"
                                 class="form-control"
@@ -322,7 +309,7 @@
                                 required
                               />
                               <div class="invalid-feedback">
-                                Zip code required.
+                                Hibás irányítószám!
                               </div>
                             </div>
                           </div>
@@ -336,8 +323,8 @@
                             <label
                               class="custom-control-label"
                               for="same-address"
-                              >Shipping address is the same as my billing
-                              address</label
+                              >A szállítási cím megegyezik a számlázási
+                              címmel.</label
                             >
                           </div>
                           <div class="custom-control custom-checkbox">
@@ -347,13 +334,13 @@
                               id="save-info"
                             />
                             <label class="custom-control-label" for="save-info"
-                              >Save this information for next time</label
+                              >Adatok elmentése későbbi vásárláshoz.</label
                             >
                           </div>
                           <hr class="mb-4" />
 
                           <div class="card-header py-3">
-                            <h5 class="mb-0">Payment Methods</h5>
+                            <h5 class="mb-0">Fizetési módok</h5>
                           </div>
 
                           <div class="d-block my-3">
@@ -367,7 +354,7 @@
                                 required
                               />
                               <label class="custom-control-label" for="credit"
-                                >Credit card</label
+                                >Hitelkártya</label
                               >
                             </div>
                             <div class="custom-control custom-radio">
@@ -379,7 +366,7 @@
                                 required
                               />
                               <label class="custom-control-label" for="debit"
-                                >Debit card</label
+                                >Betéti kártya</label
                               >
                             </div>
                             <div class="custom-control custom-radio">
@@ -397,7 +384,7 @@
                           </div>
                           <div class="row">
                             <div class="col-md-6 mb-3">
-                              <label for="cc-name">Name on card</label>
+                              <label for="cc-name">Teljes név</label>
                               <input
                                 type="text"
                                 class="form-control"
@@ -406,14 +393,12 @@
                                 required
                               />
                               <small class="text-muted"
-                                >Full name as displayed on card</small
+                                >Név ami a kártyán szerepel</small
                               >
-                              <div class="invalid-feedback">
-                                Name on card is required
-                              </div>
+                              <div class="invalid-feedback">Hibás név!</div>
                             </div>
                             <div class="col-md-6 mb-3">
-                              <label for="cc-number">Credit card number</label>
+                              <label for="cc-number">Kártya száma</label>
                               <input
                                 type="text"
                                 class="form-control"
@@ -422,13 +407,13 @@
                                 required
                               />
                               <div class="invalid-feedback">
-                                Credit card number is required
+                                Hibás kártyaszám!
                               </div>
                             </div>
                           </div>
                           <div class="row">
                             <div class="col-md-3 mb-3">
-                              <label for="cc-expiration">Expiration</label>
+                              <label for="cc-expiration">Lejárati dátum</label>
                               <input
                                 type="text"
                                 class="form-control"
@@ -460,14 +445,14 @@
                               class="btn btn-custom btn-lg btn-block"
                               href="#"
                               role="button"
-                              >Pay</a
+                              >Fizetek</a
                             >
                             <button
                               class="btn btn-custom btn-lg btn-block"
                               href="#"
                               type="submit"
                             >
-                              Back to Cart
+                              Vissza a kosárhoz
                             </button>
                           </div>
                         </form>
@@ -477,7 +462,7 @@
                       <footer
                         class="my-1 pt-5 text-muted text-center text-small"
                       >
-                        <p class="mb-1">&copy; 2024 Sport4Ever</p>
+                        <p class="mb-1">&copy; 2024 Ajándékház</p>
                         <ul class="list-inline">
                           <li class="list-inline-item">
                             <a
