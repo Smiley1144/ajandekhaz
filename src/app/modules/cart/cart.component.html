@@ -110,7 +110,7 @@
         <div class="card mb-4">
           <div class="card-body">
             <p><strong>Várható házhozszállítás </strong></p>
-            <p class="mb-0">2024.02.21. - 2024.02.24.</p>
+            <p class="mb-0">{{ getCurrentDate() }} - {{ getDeliveryDate() }}</p>
           </div>
         </div>
         <div class="card mb-4 mb-lg-0">
@@ -245,7 +245,7 @@
                                 type="text"
                                 class="form-control"
                                 id="username"
-                                placeholder="Username"
+                                placeholder="felhasznalonev"
                                 required
                               />
                               <div class="invalid-feedback" style="width: 100%">
@@ -256,25 +256,27 @@
 
                           <div class="mb-3">
                             <label for="email"
-                              >Email
-                              <span class="text-muted">(Optional)</span></label
+                              >Email cím
+                              <span class="text-muted"
+                                >(Opcionális)</span
+                              ></label
                             >
                             <input
                               type="email"
                               class="form-control"
                               id="email"
-                              placeholder="example@example.com"
+                              placeholder="pelda@pelda.com"
                             />
                             <div class="invalid-feedback">Hibás email cím!</div>
                           </div>
 
                           <div class="mb-3">
-                            <label for="address">Address</label>
+                            <label for="address">Számlázási cím</label>
                             <input
                               type="text"
                               class="form-control"
                               id="address"
-                              placeholder="Main Street 1."
+                              placeholder="Utca házszám"
                               required
                             />
                             <div class="invalid-feedback">
@@ -296,7 +298,7 @@
                                 <option>Kína</option>
                                 <option>Oroszország</option>
                               </select>
-                              <div class="invalid-feedback">Hivás ország!</div>
+                              <div class="invalid-feedback">Hibás ország!</div>
                             </div>
 
                             <div class="col-md-3 mb-3">
@@ -422,7 +424,7 @@
                                 required
                               />
                               <div class="invalid-feedback">
-                                Expiration date required
+                                Hibás lejárati dátum!
                               </div>
                             </div>
                             <div class="col-md-3 mb-3">
@@ -435,7 +437,7 @@
                                 required
                               />
                               <div class="invalid-feedback">
-                                Security code required
+                                Hibás bisztonsági kód!
                               </div>
                             </div>
                           </div>

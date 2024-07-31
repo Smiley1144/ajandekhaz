@@ -8,6 +8,21 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent {
-  productList: ProductModel[] = []
-  constructor(private productService: ProductService){}
+  productList: ProductModel[] = [];
+  constructor(private productService: ProductService) {}
+  getCurrentDate(): string {
+    return new Date().toISOString().split('T')[0];
+  }
+
+  getDeliveryDate(): string {
+    const date = new Date();
+    let workDays = 0;
+    while (workDays < 7) {
+      date.setDate(date.getDate() + 1);
+      if (date.getDay() !== 0 && date.getDay() !== 6) {
+        workDays++;
+      }
+    }
+    return date.toISOString().split('T')[0];
+  }
 }
