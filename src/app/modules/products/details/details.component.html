@@ -2,7 +2,26 @@
 <div class="container pt-5">
   <div class="row pt-5">
     <div class="col-md-6 text-center">
-      <img [src]="product?.img" class="img-fluid mb-5 shadow" alt="Termék kép">
+      <div class="card shadow animate-card">
+        <div [id]="'carouselExampleFade_' + product?.id" class="carousel slide carousel-fade">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img [src]="product?.img" class="card-img-top" alt="...">
+            </div>
+            <div class="carousel-item" *ngIf="product?.img2">
+              <img [src]="product?.img2" class="card-img-top" alt="...">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carouselExampleFade_' + product?.id" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon bg-dark" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carouselExampleFade_' + product?.id" data-bs-slide="next">
+            <span class="carousel-control-next-icon bg-dark" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
     </div>
     <div class="col-md-6">
       <h1 class="display-4 mb-3">{{ product?.name }}</h1>
@@ -11,6 +30,17 @@
       <div class="my-4">
         <button class="btn btn-success btn-lg me-3">Kosárba</button>
         <button class="btn btn-outline-primary btn-lg ms-3">Kívánságlistához</button>
+      </div>
+      <div class="col-md-6">
+        <label for="inputQuantity" class="form-label">Mennyiség</label>
+          <select id="inputQuantity" class="form-select" [(ngModel)]="quantity" (ngModelChange)="calculateTotalPrice()">
+            <option disabled>Válassz mennyiséget</option>
+            <option *ngFor="let num of quantities" [value]="num">{{ num }}</option>
+          </select>
+      </div>
+      <div class="my-4">
+        <h3 *ngIf="displayMessage">{{ displayMessage }}</h3>
+        <h3 *ngIf="!displayMessage">Összesített ár: {{ totalPrice | currency:'HUF ' }}</h3>
       </div>
       <div class="my-4">
         <h3>Termék Leírás</h3>
