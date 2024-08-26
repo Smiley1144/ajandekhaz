@@ -46,6 +46,14 @@
         <h3>Termék Leírás</h3>
         <p>{{ product?.description }}</p>
       </div>
+      <div *ngFor="let item of cartItems" class="cart-item">
+        <img [src]="item.image" alt="{{ item.productName }}" class="cart-item-image" />
+        <div class="cart-item-details">
+          <h4>{{ item.productName }}</h4>
+          <p>Mennyiség: {{ item.quantity }}</p>
+          <p>Összesen: {{ item.totalPrice | currency:'HUF' }}</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -82,6 +82,8 @@ export class DetailsComponent implements OnInit {
       this.cartItems.push(cartItem)
       this.CartService.addToCart(cartItem);
       alert('A terméket sikeresen hozzáadtuk a kosárhoz!')
+      
+        
     }
   }
 
