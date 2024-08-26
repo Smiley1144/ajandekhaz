@@ -1,3 +1,4 @@
+import { CartService } from './../../services/cart.service';
 import {
   animate,
   state,
@@ -6,6 +7,7 @@ import {
   trigger,
 } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { CartItem } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -14,10 +16,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
   navbarOpen = false;
+  cartItems: CartItem[] = []
 
-  constructor() {}
+  constructor(private CartService: CartService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.CartService.cart$.subscribe(items => {
+      this.cartItems = items;
+    })
+  }
 
   toggleNavbar(): void {
     this.navbarOpen = !this.navbarOpen;

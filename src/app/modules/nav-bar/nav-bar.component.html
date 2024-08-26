@@ -65,8 +65,15 @@
     <h5 class="offcanvas-title" id="offcanvasRightLabel">Kosár tartalma:</h5>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
-  <div class="offcanvas-body">
-    <p>Try scrolling the rest of the page to see this option in action.</p>
+  <div class="offcanvas-body" *ngIf="cartItems.length > 0">
+    <div *ngFor="let item of cartItems" class="cart-item">
+      <img [src]="item.image" alt="{{ item.productName }}" class="w-50" />
+      <div class="cart-item-details">
+        <h4>{{ item.productName }}</h4>
+        <p>Mennyiség: {{ item.quantity }}</p>
+        <p>Összesen: {{ item.totalPrice | currency:'HUF' }}</p>
+      </div>
+    </div>
   </div>
 </div>
 
