@@ -1,3 +1,4 @@
+import { CartItem, CartService } from './../../../services/cart.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -18,10 +19,12 @@ export class DetailsComponent implements OnInit {
   quantities: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   totalPrice: number = 0;
   displayMessage: string = '';
+  cartItems: CartItem[] = [];
   
   constructor(
     private productService: ProductService, 
     private route: ActivatedRoute,
+    private CartService: CartService,
   ) { }
 
   ngOnInit(): void {
@@ -59,6 +62,26 @@ export class DetailsComponent implements OnInit {
       }
     } else {
       this.totalPrice = 0;
+    }
+  }
+
+  addToCart():void{
+    if(this.product){
+      const quantityString = this.quantity || '1'; // Alapértelmezett érték '1' ha undefined
+      const quantityNumber = parseInt(quantityString, 10); // Átalakítjuk számmá
+
+      const productId = this.product.id ? parseInt(this.product.id.toString(), 10) : 0;
+      const cartItem: CartItem = {
+        productId: productId,
+        productName: this.product.name,
+        quantity: quantityNumber,
+        price: this.product.price,
+        image: this.product.img,
+        totalPrice: this.totalPrice
+      };
+      this.cartItems.push(cartItem)
+      this.CartService.addToCart(cartItem);
+      alert('A terméket sikeresen hozzáadtuk a kosárhoz!')
     }
   }
 

@@ -28,7 +28,7 @@
       <p class="lead mb-4">Ez egy rövid leírás a termékről, amely kiemeli annak főbb tulajdonságait és előnyeit.</p>
       <h2 class="text-primary mb-4">Ár: {{ totalPrice | currency:'HUF ' }}</h2>
       <div class="my-4">
-        <button class="btn btn-success btn-lg me-3">Kosárba</button>
+        <button (click)="addToCart()" class="btn btn-success btn-lg me-3">Kosárba</button>
         <button class="btn btn-outline-primary btn-lg ms-3">Kívánságlistához</button>
       </div>
       <div class="col-md-6">
