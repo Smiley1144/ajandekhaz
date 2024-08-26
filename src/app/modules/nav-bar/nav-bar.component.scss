@@ -30,3 +30,17 @@
 .bg-transparent {
   background-color: rgba(252, 142, 172, 0.719) !important;
 }
+
+nav button{
+  background-color: #f9f2f1;
+  border: #800020;
+  padding: 0.5rem 1.5rem;
+  &:hover{
+    background-color: #800020;
+    color: #f9f2f1;
+  }
+}
+
+.offcanvas{
+  opacity: 0.8;
+}
