@@ -5,4 +5,6 @@ export interface ProductModel {
     img: string;
     img2?: string;
     price: number;
+    title?: string;
+    property?: string;
 }
