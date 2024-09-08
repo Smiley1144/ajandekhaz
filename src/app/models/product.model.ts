@@ -7,4 +7,6 @@ export interface ProductModel {
     price: number;
     title?: string;
     property?: string;
+    text?: boolean;
+    image?: boolean;
 }

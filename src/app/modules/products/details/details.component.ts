@@ -20,6 +20,10 @@ export class DetailsComponent implements OnInit {
   totalPrice: number = 0;
   displayMessage: string = '';
   cartItems: CartItem[] = [];
+  propertyItems: string[] = []; // A darabolt leírás
+  textInput: string = '';
+  selectedFile: File | null = null;
+  errorMessage: string = '';
   
   constructor(
     private productService: ProductService, 
@@ -36,11 +40,32 @@ export class DetailsComponent implements OnInit {
     });
   }
 
+  onFileChange(event: any) {
+    const file = event.target.files[0];
+    this.selectedFile = file || null; // Ha nincs fájl, állítsd null-ra
+    if (file) {
+      this.selectedFile = file;
+    }
+  }
+
+  onSubmit(form: any): void {
+    // Ellenőrizzük, hogy a form érvényes-e
+    if (this.isValidForm()) {
+      // Ha érvényes, akkor lefuttatjuk az addToCart metódust
+      this.addToCart();
+    } else {
+      this.errorMessage = 'Kérjük, töltsd ki a szükséges mezőket!';
+    }
+  }
+
   loadProductDetails(productIndex: number): void {
     this.subProduct = this.productService.getProductByIndex(productIndex).subscribe({
       next: (data) => {
         this.product = data;
         this.calculateTotalPrice();
+        if (this.product?.property) {
+          this.propertyItems = this.product.property.split('-');
+        }
       },
       error: (err) => {
         console.error(err);
@@ -65,11 +90,31 @@ export class DetailsComponent implements OnInit {
     }
   }
 
-  addToCart():void{
-    if(this.product){
-      const quantityString = this.quantity || '1'; // Alapértelmezett érték '1' ha undefined
+  isValidForm(): boolean {
+    // Ha a product image szükséges
+    const isImageRequired = this.product?.image;
+    // Ha a product text szükséges
+    const isTextRequired = this.product?.text;
+  
+    // Ellenőrizzük, hogy legalább az egyik kötelező mező ki van töltve
+    const isImageValid = !isImageRequired || (isImageRequired && !!this.selectedFile);
+    const isTextValid = !isTextRequired || (isTextRequired && !!this.textInput);
+  
+    // Ha a product.image szükséges, és a selectedFile nem üres, vagy
+    // Ha a product.text szükséges, és a textInput nem üres
+    return (isImageRequired && isImageValid) || (isTextRequired && isTextValid) || (!isImageRequired && !isTextRequired);
+  }
+  addToCart(): void {
+    // Validálás: csak akkor folytatódik, ha a form érvényes
+    if (!this.isValidForm()) {
+      this.errorMessage = 'Kérjük, töltsön fel egy képet vagy adjon meg egy szöveget!';
+      return;
+    }
+  
+    if (this.product) {
+      const quantityString = this.quantity || '1'; // Alapértelmezett érték '1', ha undefined
       const quantityNumber = parseInt(quantityString, 10); // Átalakítjuk számmá
-
+  
       const productId = this.product.id ? parseInt(this.product.id.toString(), 10) : 0;
       const cartItem: CartItem = {
         productId: productId,
@@ -79,11 +124,9 @@ export class DetailsComponent implements OnInit {
         image: this.product.img,
         totalPrice: this.totalPrice
       };
-      this.cartItems.push(cartItem)
+      this.cartItems.push(cartItem);
       this.CartService.addToCart(cartItem);
-      alert('A terméket sikeresen hozzáadtuk a kosárhoz!')
-      
-        
+      alert('A terméket sikeresen hozzáadtuk a kosárhoz!');
     }
   }
 
