@@ -34,6 +34,10 @@ export class NavBarComponent implements OnInit {
 
   }
 
+  removeItem(productId: number): void {
+    this.CartService.removeFromCart(productId);
+  }
+
   toggleNavbar(): void {
     this.navbarOpen = !this.navbarOpen;
   }
