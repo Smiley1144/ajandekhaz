@@ -26,6 +26,7 @@ export class NavBarComponent implements OnInit {
     this.CartService.cart$.subscribe(items => {
       this.cartItems = items;
       this.totalPrice = this.CartService.getTotalPrice();  // Frissítjük a kosár összértékét
+      this.textInput = items.map(item => item.textInput).filter(text => text).join(', ');
     })
     this.CartService.currentTextInput$.subscribe(text => {
       this.textInput = text;

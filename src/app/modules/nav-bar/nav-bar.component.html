@@ -71,11 +71,11 @@
       <div class="cart-item-details">
         <h4>{{ item.productName }}</h4>
         <p>Mennyiség: {{ item.quantity }}</p>
-        <p *ngIf="textInput?.length">Szöveg: {{ textInput }} </p>
+        <p *ngIf="textInput?.length">Szöveg: {{ item.textInput }} </p>
         <p>Összesen: {{ item.totalPrice | currency:'HUF' }}</p>
       </div>
     </div>
-    <p>A kosárban lévő termékek összege: {{ totalPrice | currency:'HUF' }}</p>
+    <p class="total">A kosárban lévő termékek összege: {{ totalPrice | currency:'HUF' }}</p>
   </div>
 </div>
 

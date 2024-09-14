@@ -24,6 +24,7 @@ export class DetailsComponent implements OnInit {
   textInput: string = '';
   selectedFile: File | null = null;
   errorMessage: string = '';
+  inputText: string = '';
   
   constructor(
     private productService: ProductService, 
@@ -132,7 +133,8 @@ export class DetailsComponent implements OnInit {
         quantity: quantityNumber,
         price: this.product.price,
         image: this.product.img,
-        totalPrice: this.totalPrice
+        totalPrice: this.totalPrice,
+        textInput: this.textInput
       };
       this.cartItems.push(cartItem);
       this.CartService.addToCart(cartItem);

@@ -8,6 +8,7 @@ export interface CartItem {
   price: number;
   image: string;
   totalPrice: number;
+  textInput?: string;
 }
 
 @Injectable({
@@ -16,6 +17,7 @@ export interface CartItem {
 export class CartService {
 
   private cartItems: CartItem[] = [];
+  private cartSubject = new BehaviorSubject<CartItem[]>([]);
   private cart = new BehaviorSubject<CartItem[]>([]);
   private textInputSource = new BehaviorSubject<string | null>(null);
   currentTextInput$ = this.textInputSource.asObservable();
@@ -34,6 +36,7 @@ export class CartService {
     const existingItem = this.cartItems.find(ci => ci.productId === item.productId);
       this.cartItems.push(item)
       this.cart.next(this.cartItems)
+      this.cartSubject.next(this.cartItems);
   }
 
   getCartItems(): CartItem[]{
