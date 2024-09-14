@@ -16,9 +16,15 @@ export interface CartItem {
 export class CartService {
 
   private cartItems: CartItem[] = [];
-  private cart = new BehaviorSubject<CartItem[]>([])
+  private cart = new BehaviorSubject<CartItem[]>([]);
+  private textInputSource = new BehaviorSubject<string | null>(null);
+  currentTextInput$ = this.textInputSource.asObservable();
 
   cart$ = this.cart.asObservable();
+
+  updateTextInput(text: string): void {
+    this.textInputSource.next(text);
+  }
 
   addToCart(item: CartItem): void{
     const existingItem = this.cartItems.find(ci => ci.productId === item.productId);

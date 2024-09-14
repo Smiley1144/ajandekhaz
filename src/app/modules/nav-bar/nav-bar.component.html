@@ -71,7 +71,9 @@
       <div class="cart-item-details">
         <h4>{{ item.productName }}</h4>
         <p>Mennyiség: {{ item.quantity }}</p>
+        <p *ngIf="textInput?.length">Szöveg: {{ textInput }} </p>
         <p>Összesen: {{ item.totalPrice | currency:'HUF' }}</p>
+        
       </div>
     </div>
   </div>

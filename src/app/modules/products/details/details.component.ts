@@ -40,6 +40,11 @@ export class DetailsComponent implements OnInit {
     });
   }
 
+  // Ezt hívd meg, amikor a felhasználó módosítja a textInput-ot
+  onTextInputChange(): void {
+    this.CartService.updateTextInput(this.textInput);
+  }
+
   onFileChange(event: any) {
     const file = event.target.files[0];
     this.selectedFile = file || null; // Ha nincs fájl, állítsd null-ra

@@ -17,6 +17,7 @@ import { CartItem } from 'src/app/services/cart.service';
 export class NavBarComponent implements OnInit {
   navbarOpen = false;
   cartItems: CartItem[] = []
+  textInput: string | null = '';
 
   constructor(private CartService: CartService) {}
 
@@ -24,6 +25,9 @@ export class NavBarComponent implements OnInit {
     this.CartService.cart$.subscribe(items => {
       this.cartItems = items;
     })
+    this.CartService.currentTextInput$.subscribe(text => {
+      this.textInput = text;
+    });
   }
 
   toggleNavbar(): void {
