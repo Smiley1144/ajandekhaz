@@ -104,6 +104,11 @@ export class DetailsComponent implements OnInit {
     // Ellenőrizzük, hogy legalább az egyik kötelező mező ki van töltve
     const isImageValid = !isImageRequired || (isImageRequired && !!this.selectedFile);
     const isTextValid = !isTextRequired || (isTextRequired && !!this.textInput);
+    const quantityString = this.quantity || '1'; // Alapértelmezett érték '1' ha undefined
+    const quantityNumber = parseInt(quantityString, 10); // Átalakítjuk számmá
+    if (quantityNumber === 10){
+      return false;
+    }
   
     // Ha a product.image szükséges, és a selectedFile nem üres, vagy
     // Ha a product.text szükséges, és a textInput nem üres

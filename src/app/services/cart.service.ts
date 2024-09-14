@@ -28,14 +28,8 @@ export class CartService {
 
   addToCart(item: CartItem): void{
     const existingItem = this.cartItems.find(ci => ci.productId === item.productId);
-    if(existingItem){
-      existingItem.quantity += item.quantity;
-      existingItem.totalPrice += item.totalPrice;
-    }
-    else{
       this.cartItems.push(item)
-    }
-    this.cart.next(this.cartItems)
+      this.cart.next(this.cartItems)
   }
 
   getCartItems(): CartItem[]{
