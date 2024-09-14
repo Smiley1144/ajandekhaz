@@ -73,9 +73,9 @@
         <p>Mennyiség: {{ item.quantity }}</p>
         <p *ngIf="textInput?.length">Szöveg: {{ textInput }} </p>
         <p>Összesen: {{ item.totalPrice | currency:'HUF' }}</p>
-        
       </div>
     </div>
+    <p>A kosárban lévő termékek összege: {{ totalPrice | currency:'HUF' }}</p>
   </div>
 </div>
 

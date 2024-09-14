@@ -18,16 +18,19 @@ export class NavBarComponent implements OnInit {
   navbarOpen = false;
   cartItems: CartItem[] = []
   textInput: string | null = '';
+  totalPrice: number = 0;
 
   constructor(private CartService: CartService) {}
 
   ngOnInit(): void {
     this.CartService.cart$.subscribe(items => {
       this.cartItems = items;
+      this.totalPrice = this.CartService.getTotalPrice();  // Frissítjük a kosár összértékét
     })
     this.CartService.currentTextInput$.subscribe(text => {
       this.textInput = text;
     });
+
   }
 
   toggleNavbar(): void {

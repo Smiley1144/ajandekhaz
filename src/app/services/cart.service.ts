@@ -25,6 +25,10 @@ export class CartService {
   updateTextInput(text: string): void {
     this.textInputSource.next(text);
   }
+  
+  getTotalPrice(): number {
+    return this.cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+  }
 
   addToCart(item: CartItem): void{
     const existingItem = this.cartItems.find(ci => ci.productId === item.productId);
