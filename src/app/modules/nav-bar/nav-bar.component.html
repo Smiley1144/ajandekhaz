@@ -68,12 +68,12 @@
   <div class="offcanvas-body" *ngIf="cartItems.length > 0">
     <div *ngFor="let item of cartItems" class="cart-item">
       <img [src]="item.image" alt="{{ item.productName }}" class="w-50" />
-      <div class="cart-item-details">
+      <div *ngFor="let item of cartItems; let i = index" class="cart-item-details">
         <h4>{{ item.productName }}</h4>
         <p>Mennyiség: {{ item.quantity }}</p>
         <p *ngIf="textInput?.length">Szöveg: {{ item.textInput }} </p>
         <p>Összesen: {{ item.totalPrice | currency:'HUF' }}</p>
-        <a href="" (click)="removeItem(item.productId)">X</a>
+        <button (click)="removeFromCart(i, $event)">X</button>
       </div>
     </div>
     <p class="total">A kosárban lévő termékek összege: {{ totalPrice | currency:'HUF' }}</p>

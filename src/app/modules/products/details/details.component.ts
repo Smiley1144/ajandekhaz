@@ -136,8 +136,10 @@ export class DetailsComponent implements OnInit {
         totalPrice: this.totalPrice,
         textInput: this.textInput
       };
-      this.cartItems.push(cartItem);
+  
+      // Hozzáadás a CartService-hez
       this.CartService.addToCart(cartItem);
+  
       alert('A terméket sikeresen hozzáadtuk a kosárhoz!');
     }
   }

@@ -25,7 +25,7 @@ export class NavBarComponent implements OnInit {
   ngOnInit(): void {
     this.CartService.cart$.subscribe(items => {
       this.cartItems = items;
-      this.totalPrice = this.CartService.getTotalPrice();  // Frissítjük a kosár összértékét
+      this.updateTotalPrice();
       this.textInput = items.map(item => item.textInput).filter(text => text).join(', ');
     })
     this.CartService.currentTextInput$.subscribe(text => {
@@ -34,10 +34,22 @@ export class NavBarComponent implements OnInit {
 
   }
 
-  removeItem(productId: number): void {
-    this.CartService.removeFromCart(productId);
+  updateTotalPrice(): void {
+    this.totalPrice = this.CartService.getTotalPrice();
   }
 
+  removeFromCart(index: number, event: Event): void {
+    // Megakadályozzuk az alapértelmezett viselkedést (pl. navigációt)
+    event.preventDefault();
+    event.stopPropagation();
+  
+    // Töröljük az adott indexen lévő elemet a kosárból
+    this.cartItems.splice(index, 1);
+  
+    // Frissítjük a kosarat a CartService-ben
+    this.CartService.updateCart([...this.cartItems]);
+  }
+  
   toggleNavbar(): void {
     this.navbarOpen = !this.navbarOpen;
   }
