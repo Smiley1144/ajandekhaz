@@ -38,3 +38,44 @@
     background-color: #007bff;
     color: #fff;
   }
+
+  // SCSS kód a stílusokhoz
+
+// Carousel image styling
+.carousel-item img {
+  max-height: 500px; // Maximum height for carousel images
+  object-fit: cover;
+}
+
+// Card styling
+.card {
+  border: none;
+  border-radius: 10px;
+}
+
+// Button styling
+.btn {
+  border-radius: 20px; // Rounded buttons
+}
+
+// Alert styling for error messages
+.alert {
+  border-radius: 5px;
+}
+
+// List styling
+ul.list-unstyled {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .card {
+    margin-bottom: 1rem;
+  }
+}
