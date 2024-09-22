@@ -35,7 +35,7 @@ export class CartService {
   addToCart(item: CartItem): void {
     // Ellenőrizd, hogy azonos termék és ugyanaz a textInput van-e már a kosárban
     const existingItem = this.cartItems.find(ci => 
-      ci.productId === item.productId && ci.textInput === item.textInput
+      ci.textInput === item.textInput
     );
     
     if (existingItem) {

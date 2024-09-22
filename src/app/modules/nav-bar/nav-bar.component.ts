@@ -48,6 +48,7 @@ export class NavBarComponent implements OnInit {
   
     // Frissítjük a kosarat a CartService-ben
     this.CartService.updateCart([...this.cartItems]);
+    this.updateTotalPrice();
   }
   
   toggleNavbar(): void {
