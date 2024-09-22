@@ -19,6 +19,7 @@ export class NavBarComponent implements OnInit {
   cartItems: CartItem[] = []
   textInput: string | null = '';
   totalPrice: number = 0;
+  quantity: number = 0;
 
   constructor(private CartService: CartService) {}
 
@@ -27,6 +28,8 @@ export class NavBarComponent implements OnInit {
       this.cartItems = items;
       this.updateTotalPrice();
       this.textInput = items.map(item => item.textInput).filter(text => text).join(', ');
+      // Frissítjük a quantity-t
+      this.quantity = this.CartService.currentQuantity;
     })
     this.CartService.currentTextInput$.subscribe(text => {
       this.textInput = text;

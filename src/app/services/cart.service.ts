@@ -20,6 +20,7 @@ export class CartService {
   private cartSubject = new BehaviorSubject<CartItem[]>([]);
   private cart = new BehaviorSubject<CartItem[]>([]);
   private textInputSource = new BehaviorSubject<string | null>(null);
+  currentQuantity: number = 0;
   currentTextInput$ = this.textInputSource.asObservable();
 
   cart$ = this.cart.asObservable();
@@ -27,9 +28,18 @@ export class CartService {
   updateTextInput(text: string): void {
     this.textInputSource.next(text);
   }
+
+  updateQuantity(quantity: number): void {
+    this.currentQuantity = quantity; // Ez egy új property, ami tárolja a mennyiséget
+    this.cart.next(this.cartItems); // Ezt hívd meg, hogy frissítsd a cart-t
+  }
   
   getTotalPrice(): number {
     return this.cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+  }
+
+  getQuantityOfProducts(): number {
+    return this.cartItems.reduce((sum, item) => sum + item.quantity, 0);
   }
 
   addToCart(item: CartItem): void {
