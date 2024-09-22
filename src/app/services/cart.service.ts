@@ -44,7 +44,7 @@ export class CartService {
       existingItem.totalPrice += item.totalPrice;
     } else {
       // Ha a termék vagy az input eltér, akkor külön adjuk hozzá
-      this.cartItems.push(item);
+      this.cartItems = [...this.cartItems, item];  // Szimpla push helyett
     }
 
     console.log("Cart items after adding:", this.cartItems); // DEBUG LOG
@@ -55,7 +55,9 @@ export class CartService {
   }
 
   updateCart(updatedItems: CartItem[]): void {
-    this.cartSubject.next(updatedItems);  // Frissítjük a Subject-et
+    this.cartItems = updatedItems; // Update the main array
+    this.cart.next([...this.cartItems]);  // Update observable
+    this.cartSubject.next([...this.cartItems]); // Notify any subscribers
   }
 
   getCartItems(): CartItem[]{
