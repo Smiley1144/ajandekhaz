@@ -21,11 +21,12 @@ export class CartComponent {
   ngOnInit(): void {
     this.CartService.cart$.subscribe(items => {
       this.cartItems = items;
-      this.updateTotalPrice();
+      this.updateTotalPrice(); // Újraszámoljuk az árat a szállítási költséggel
+      // this.deliveryPrice = this.CartService.getDeliveryPrice(); // Frissítjük a szállítási díjat
       this.quantityOfProducts = this.CartService.getQuantityOfProducts();  // Frissíti a termékek mennyiségét
-      this.totalPrice = this.CartService.getTotalPrice();
+      // this.totalPrice = this.CartService.getTotalPrice();
       this.textInput = items.map(item => item.textInput).filter(text => text).join(', ');
-      this.freeDelivery(); // Ellenőrizzük, hogy ingyenes e a szállítás
+      // this.freeDelivery(); // Ellenőrizzük, hogy ingyenes e a szállítás
     })
     this.CartService.currentTextInput$.subscribe(text => {
       this.textInput = text;
@@ -35,17 +36,18 @@ export class CartComponent {
 
   onQuantityChange(item: CartItem, event: any) {
     const newQuantity = event.target.value;
-    item.quantity = Number(newQuantity); // Update the item's quantity
+    item.quantity = Number(newQuantity); // Frissítjük a mennyiséget
 
     // Update the CartService to reflect the new quantity
     this.CartService.updateCart([...this.cartItems]);
 
-    this.updateTotalPrice(); // Recalculate total price
-    this.freeDelivery(); // Check for free delivery after quantity change
+    this.updateTotalPrice(); // Újraszámoljuk az összeget
+    // this.freeDelivery(); // Megnézzük, hogy ingyenes e a hozzáadás után
   }
 
-  freeDelivery(): number {
-    return this.totalPrice > 15000 ? 0 : 1290; // Return delivery price based on totalPrice
+  freeDelivery(): void {
+    // Ellenőrizzük, hogy a teljes ár meghaladja-e a 15000 forintot, és ennek megfelelően frissítjük a szállítási árat
+    this.deliveryPrice = this.totalPrice > 15000 ? 0 : 1290;
   }
 
   quantityOfProd() {
@@ -55,9 +57,11 @@ export class CartComponent {
   updateTotalPrice(): void {
     // Calculate the total price without adding delivery cost yet
     this.totalPrice = this.cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
-    this.deliveryPrice = this.freeDelivery(); // Minden módosításnál ellenőrizzük a freeDelivery-t
-    // Add delivery cost based on the freeDelivery condition
-    this.totalPrice += this.deliveryPrice;
+    // Hozzáadja a szállítási költséget
+    // Ellenőrizzük, hogy szükség van-e szállítási költségre
+    this.freeDelivery();
+    // this.deliveryPrice = this.CartService.getDeliveryPrice(); // Itt frissítjük a szállítási díjat
+    this.totalPrice += this.deliveryPrice; // Ha szükséges hozzáadjuk a szállítási költséget
   }
 
   removeFromCart(index: number, event: Event): void {

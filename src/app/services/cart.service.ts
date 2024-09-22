@@ -20,6 +20,7 @@ export class CartService {
   private cartSubject = new BehaviorSubject<CartItem[]>([]);
   private cart = new BehaviorSubject<CartItem[]>([]);
   private textInputSource = new BehaviorSubject<string | null>(null);
+  private deliveryPrice: number = 1290;
   currentQuantity: number = 0;
   currentTextInput$ = this.textInputSource.asObservable();
 
@@ -27,6 +28,10 @@ export class CartService {
 
   updateTextInput(text: string): void {
     this.textInputSource.next(text);
+  }
+
+  getDeliveryPrice(): number {
+    return this.getTotalPrice() > 15000 ? 0 : this.deliveryPrice;
   }
 
   updateQuantity(quantity: number): void {
