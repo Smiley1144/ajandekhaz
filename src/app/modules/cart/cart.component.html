@@ -123,21 +123,10 @@
             <img
               class="me-2"
               width="45px"
-              src="https://www.svgrepo.com/show/328144/visa.svg"
-              alt="Visa"
+              src="https://www.svgrepo.com/show/530607/bank-card.svg"
+              alt="Transfer"
             />
-            <img
-              class="me-2"
-              width="45px"
-              src="https://www.svgrepo.com/show/354044/mastercard.svg"
-              alt="Mastercard"
-            />
-            <img
-              class="me-2"
-              width="45px"
-              src="https://www.svgrepo.com/show/362021/paypal-3.svg"
-              alt="PayPal"
-            />
+            <h6>Átutalás</h6>
           </div>
         </div>
       </div>
@@ -177,9 +166,9 @@
             <div class="button-container">
               <a
                 class="btn btn-custom btn-lg btn-block align-left"
-                href="#"
+                routerLink="/products"
                 role="button"
-                >Home</a
+                >Vissza a termékekhez</a
               >
 
               <button
@@ -198,8 +187,9 @@
                 id="offcanvasRight"
                 aria-labelledby="offcanvasRightLabel"
               >
-                <div class="card-header py-3">
+                <div class="card-header py-3 d-flex justify-content-between">
                   <h5 class="mb-0">Számlázási cím</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
                   <div class="container">
@@ -447,14 +437,15 @@
                           <div class="paymentBtn">
                             <a
                               class="btn btn-custom btn-lg btn-block"
-                              href="#"
                               role="button"
                               >Fizetek</a
                             >
                             <button
                               class="btn btn-custom btn-lg btn-block"
-                              href="#"
-                              type="submit"
+                              routerLink="/cart"
+                              type="button"
+                              data-bs-dismiss="offcanvas" 
+                              aria-label="Close"
                             >
                               Vissza a kosárhoz
                             </button>
