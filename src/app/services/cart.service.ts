@@ -60,6 +60,8 @@ export class CartService {
     } else {
       // Ha a termék vagy az input eltér, akkor külön adjuk hozzá
       this.cartItems = [...this.cartItems, item];  // Szimpla push helyett
+      // Elmentjük a localStorage-ba
+      localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
     }
 
     console.log("Cart items after adding:", this.cartItems); // DEBUG LOG

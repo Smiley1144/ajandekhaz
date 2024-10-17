@@ -1,5 +1,6 @@
 import { CartService } from './../../services/cart.service';
 import { Component } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { ProductModel } from 'src/app/models/product.model';
 import { CartItem } from 'src/app/services/cart.service';
 
@@ -16,9 +17,17 @@ export class CartComponent {
   quantityOfProducts: number = 0;
   deliveryPrice: number = 1290;
   quantity: number = 1;
-  constructor(private CartService: CartService){}
+  constructor(private CartService: CartService, private cookieService: CookieService){}
 
   ngOnInit(): void {
+    // Először betöltjük a cookie-kból a kosár tartalmát
+    this.loadCartFromCookies();
+
+    const storedCart = localStorage.getItem('cartItems');
+    if (storedCart) {
+      this.cartItems = JSON.parse(storedCart);
+    }
+
     this.CartService.cart$.subscribe(items => {
       this.cartItems = items;
       this.updateTotalPrice(); // Újraszámoljuk az árat a szállítási költséggel
@@ -27,12 +36,31 @@ export class CartComponent {
       // this.totalPrice = this.CartService.getTotalPrice();
       this.textInput = items.map(item => item.textInput).filter(text => text).join(', ');
       // this.freeDelivery(); // Ellenőrizzük, hogy ingyenes e a szállítás
+      this.saveCartToCookies(); // Mentjük a kosarat minden frissítés után
     })
+
     this.CartService.currentTextInput$.subscribe(text => {
       this.textInput = text;
     });
 
   }
+
+  saveCartToCookies() {
+    this.cookieService.set('cartItems', JSON.stringify(this.cartItems), { expires: 7, path: '/' });
+}
+  
+loadCartFromCookies() {
+  const storedCart = this.cookieService.get('cartItems');
+  if (storedCart) {
+      try {
+          this.cartItems = JSON.parse(storedCart);
+          this.CartService.updateCart([...this.cartItems]); // Frissítjük a CartService-t is
+      } catch (error) {
+          console.error('Invalid cart data in cookies', error);
+          this.cartItems = [];
+      }
+  }
+}
 
   onQuantityChange(item: CartItem, event: any) {
     const newQuantity = event.target.value;
@@ -75,10 +103,14 @@ export class CartComponent {
     if(confirmation){
       // Töröljük az adott indexen lévő elemet a kosárból
       this.cartItems.splice(index, 1);
+
+      // Frissítsük a localStorage tartalmát
+      localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
     
       // Frissítjük a kosarat a CartService-ben
       this.CartService.updateCart([...this.cartItems]);
       this.updateTotalPrice();
+      // this.saveCartToCookies(); // Mentjük a frissített kosarat a törlés után
     }
   }
 

@@ -7,6 +7,7 @@ import {
   trigger,
 } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { CartItem } from 'src/app/services/cart.service';
 
 @Component({
@@ -21,9 +22,13 @@ export class NavBarComponent implements OnInit {
   totalPrice: number = 0;
   quantity: number = 0;
 
-  constructor(private CartService: CartService) {}
+  constructor(private CartService: CartService,private cookieService: CookieService) {}
 
   ngOnInit(): void {
+    const storedCart = localStorage.getItem('cartItems');
+    if (storedCart) {
+      this.cartItems = JSON.parse(storedCart);
+    }
     this.CartService.cart$.subscribe(items => {
       this.cartItems = items;
       this.updateTotalPrice();
@@ -35,6 +40,17 @@ export class NavBarComponent implements OnInit {
       this.textInput = text;
     });
 
+  }
+
+  saveCartToCookies() {
+    this.cookieService.set('cartItems', JSON.stringify(this.cartItems), { expires: 7, path: '/' });
+  }
+  
+  loadCartFromCookies() {
+    const storedCart = this.cookieService.get('cartItems');
+    if (storedCart) {
+      this.cartItems = JSON.parse(storedCart);
+    }
   }
 
   updateTotalPrice(): void {
