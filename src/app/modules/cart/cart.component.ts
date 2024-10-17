@@ -114,4 +114,16 @@ loadCartFromCookies() {
     }
   }
 
+  increaseQuantity(item: CartItem): void {
+    item.quantity += 1;
+    this.CartService.updateCart([...this.cartItems])
+    this.updateTotalPrice();
+  }
+
+  decreaseQuantity(item: CartItem): void {
+    item.quantity -= 1;
+    this.CartService.updateCart([...this.cartItems])
+    this.updateTotalPrice();
+  }
+
 }

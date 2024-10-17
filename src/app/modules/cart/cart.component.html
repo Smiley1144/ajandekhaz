@@ -80,7 +80,7 @@
 
               <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
                 <div class="d-flex mb-4" style="max-width: 300px">
-                  <button class="btn btn-custom px-3 me-2">
+                  <button class="btn btn-custom px-3 me-2" (click)="decreaseQuantity(item)">
                     <i class="fas fa-minus"></i>
                   </button>
 
@@ -94,10 +94,10 @@
                       (change)="onQuantityChange(item, $event)"
                       [value]="item.quantity"
                     />
-                    <label for="quantity-{{ item }}" class="form-label" for="form1">Quantity</label>
+                    <label for="quantity-{{ item }}" class="form-label" for="form1">Mennyiség</label>
                   </form>
 
-                  <button class="btn btn-custom px-3 ms-2">
+                  <button class="btn btn-custom px-3 ms-2" (click)="increaseQuantity(item)">
                     <i class="fas fa-plus"></i>
                   </button>
                 </div>
