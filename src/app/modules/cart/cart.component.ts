@@ -68,13 +68,18 @@ export class CartComponent {
     // Megakadályozzuk az alapértelmezett viselkedést (pl. navigációt)
     event.preventDefault();
     event.stopPropagation();
+
+    // Megkérdezzük a felhasználót, hogy biztosan törölni szeretné-e a terméket
+    const confirmation = confirm('Biztosan törölni szeretné ezt a terméket a kosárból?');
   
-    // Töröljük az adott indexen lévő elemet a kosárból
-    this.cartItems.splice(index, 1);
-  
-    // Frissítjük a kosarat a CartService-ben
-    this.CartService.updateCart([...this.cartItems]);
-    this.updateTotalPrice();
+    if(confirmation){
+      // Töröljük az adott indexen lévő elemet a kosárból
+      this.cartItems.splice(index, 1);
+    
+      // Frissítjük a kosarat a CartService-ben
+      this.CartService.updateCart([...this.cartItems]);
+      this.updateTotalPrice();
+    }
   }
 
 }
