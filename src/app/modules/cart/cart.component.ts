@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { ProductModel } from 'src/app/models/product.model';
 import { CartItem } from 'src/app/services/cart.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-cart',
@@ -21,7 +22,10 @@ export class CartComponent {
   priceWithoutShipping: number = 0;
   zipCode: string = '';
   city: string = '';
-  constructor(private CartService: CartService, private cookieService: CookieService, private zipCodeService: ZipCodeService){}
+  orderId: number | null = null;
+  checkoutForm!: FormGroup;
+
+  constructor(private CartService: CartService, private cookieService: CookieService, private zipCodeService: ZipCodeService, private formBuilder: FormBuilder){}
 
   onSubmit(event: Event): void {
     const form = event.target as HTMLFormElement;
@@ -35,6 +39,12 @@ export class CartComponent {
 
     // Hozzáadjuk a was-validated osztályt, hogy megjelenjen az invalid-feedback
     form.classList.add('was-validated');
+
+    if (this.checkoutForm.valid) {
+      this.generateRandomNumber();
+    } else {
+      this.checkoutForm.markAllAsTouched(); // Minden mezőt érvénytelennek jelöl, ha hibás
+    }
   }
 
   ngOnInit(): void {
@@ -59,6 +69,14 @@ export class CartComponent {
 
     this.CartService.currentTextInput$.subscribe(text => {
       this.textInput = text;
+    });
+
+    this.checkoutForm = this.formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      address: ['', Validators.required],
+      zip: ['', [Validators.required, Validators.pattern(/^\d{4}$/)]], // 4 számjegyű irányítószám
     });
 
   }
@@ -165,6 +183,12 @@ loadCartFromCookies() {
     item.quantity -= 1;
     this.CartService.updateCart([...this.cartItems])
     this.updateTotalPrice();
+  }
+
+  generateRandomNumber(): void{
+ // Véletlenszerű 10 számjegyű szám generálása
+    this.orderId = Math.floor(1000000000 + Math.random() * 9000000000);
+    console.log('Generált szám:', this.orderId);
   }
 
 }
