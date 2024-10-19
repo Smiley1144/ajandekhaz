@@ -197,7 +197,7 @@
 
                     <div class="row">
                       <div class="col-md-12 order-md-1">
-                        <form class="needs-validation" novalidate>
+                        <form class="needs-validation" novalidate (ngSubmit)="onSubmit($event)">
                           <div class="row">
                             <div class="col-md-6 mb-3">
                               <label for="firstName">Vezetéknév</label>
@@ -230,70 +230,36 @@
                           </div>
 
                           <div class="mb-3">
-                            <label for="username">Felhasználónév</label>
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text"></span>
-                              </div>
-                              <input
-                                type="text"
-                                class="form-control"
-                                id="username"
-                                placeholder="Username"
-                                required
-                              />
-                              <div class="invalid-feedback" style="width: 100%">
-                                Hibás felhasználónév!
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="mb-3">
                             <label for="email"
                               >Email
-                              <span class="text-muted">(Optional)</span></label
+                              <span class="text-muted"></span></label
                             >
                             <input
                               type="email"
                               class="form-control"
                               id="email"
                               placeholder="example@example.com"
+                              required
                             />
                             <div class="invalid-feedback">Hibás email cím!</div>
                           </div>
 
                           <div class="mb-3">
-                            <label for="address">Address</label>
+                            <label for="address">Cím</label>
                             <input
                               type="text"
                               class="form-control"
                               id="address"
-                              placeholder="Main Street 1."
+                              placeholder="Fő utca 1"
                               required
                             />
                             <div class="invalid-feedback">
-                              Please enter your shipping address!
+                              Kérlek add meg a szállítási címedet
                             </div>
                           </div>
 
                           <div class="row">
-                            <div class="col-md-5 mb-3">
-                              <label for="country">Ország</label>
-                              <select
-                                class="custom-select d-block w-100"
-                                id="country"
-                                required
-                              >
-                                <option value="">Válassz...</option>
-                                <option>USA</option>
-                                <option>Magyarország</option>
-                                <option>Kína</option>
-                                <option>Oroszország</option>
-                              </select>
-                              <div class="invalid-feedback">Hivás ország!</div>
-                            </div>
-
-                            <div class="col-md-3 mb-3">
+                            <div class="col-md-6 mb-6">
                               <label for="zip">Irányítószám</label>
                               <input
                                 type="text"
@@ -301,12 +267,14 @@
                                 id="zip"
                                 placeholder=""
                                 required
+                                pattern="^[0-9]{4}$"
                               />
                               <div class="invalid-feedback">
                                 Hibás irányítószám!
                               </div>
                             </div>
                           </div>
+
                           <hr class="mb-4" />
                           <div class="custom-control custom-checkbox">
                             <input
@@ -319,16 +287,6 @@
                               for="same-address"
                               >A szállítási cím megegyezik a számlázási
                               címmel.</label
-                            >
-                          </div>
-                          <div class="custom-control custom-checkbox">
-                            <input
-                              type="checkbox"
-                              class="custom-control-input"
-                              id="save-info"
-                            />
-                            <label class="custom-control-label" for="save-info"
-                              >Adatok elmentése későbbi vásárláshoz.</label
                             >
                           </div>
                           <hr class="mb-4" />
@@ -348,98 +306,18 @@
                                 required
                               />
                               <label class="custom-control-label" for="credit"
-                                >Hitelkártya</label
+                                >Átutalás</label
                               >
-                            </div>
-                            <div class="custom-control custom-radio">
-                              <input
-                                id="debit"
-                                name="paymentMethod"
-                                type="radio"
-                                class="custom-control-input"
-                                required
-                              />
-                              <label class="custom-control-label" for="debit"
-                                >Betéti kártya</label
-                              >
-                            </div>
-                            <div class="custom-control custom-radio">
-                              <input
-                                id="paypal"
-                                name="paymentMethod"
-                                type="radio"
-                                class="custom-control-input"
-                                required
-                              />
-                              <label class="custom-control-label" for="paypal"
-                                >PayPal</label
-                              >
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-md-6 mb-3">
-                              <label for="cc-name">Teljes név</label>
-                              <input
-                                type="text"
-                                class="form-control"
-                                id="cc-name"
-                                placeholder=""
-                                required
-                              />
-                              <small class="text-muted"
-                                >Név ami a kártyán szerepel</small
-                              >
-                              <div class="invalid-feedback">Hibás név!</div>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                              <label for="cc-number">Kártya száma</label>
-                              <input
-                                type="text"
-                                class="form-control"
-                                id="cc-number"
-                                placeholder=""
-                                required
-                              />
-                              <div class="invalid-feedback">
-                                Hibás kártyaszám!
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-md-3 mb-3">
-                              <label for="cc-expiration">Lejárati dátum</label>
-                              <input
-                                type="text"
-                                class="form-control"
-                                id="cc-expiration"
-                                placeholder=""
-                                required
-                              />
-                              <div class="invalid-feedback">
-                                Expiration date required
-                              </div>
-                            </div>
-                            <div class="col-md-3 mb-3">
-                              <label for="cc-cvv">CVV</label>
-                              <input
-                                type="text"
-                                class="form-control"
-                                id="cc-cvv"
-                                placeholder=""
-                                required
-                              />
-                              <div class="invalid-feedback">
-                                Security code required
-                              </div>
                             </div>
                           </div>
                           <hr class="mb-4" />
                           <div class="paymentBtn">
-                            <a
+                            <button
                               class="btn btn-custom btn-lg btn-block"
-                              role="button"
-                              >Fizetek</a
+                              type="submit"
                             >
+                              Fizetek
+                            </button>
                             <button
                               class="btn btn-custom btn-lg btn-block"
                               routerLink="/cart"

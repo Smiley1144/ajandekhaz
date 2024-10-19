@@ -20,6 +20,20 @@ export class CartComponent {
   priceWithoutShipping: number = 0;
   constructor(private CartService: CartService, private cookieService: CookieService){}
 
+  onSubmit(event: Event): void {
+    const form = event.target as HTMLFormElement;
+
+    // Ellenőrizzük a form érvényességét
+    if (!form.checkValidity()) {
+      // Megakadályozzuk a form beküldését, ha érvénytelen
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    // Hozzáadjuk a was-validated osztályt, hogy megjelenjen az invalid-feedback
+    form.classList.add('was-validated');
+  }
+
   ngOnInit(): void {
     // Először betöltjük a cookie-kból a kosár tartalmát
     this.loadCartFromCookies();
