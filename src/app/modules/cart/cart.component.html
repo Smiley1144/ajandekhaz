@@ -197,7 +197,7 @@
 
                     <div class="row">
                       <div class="col-md-12 order-md-1">
-                        <form [formGroup]="checkoutForm" class="needs-validation" novalidate (ngSubmit)="onSubmit($event)">
+                        <form class="needs-validation" novalidate (ngSubmit)="onSubmit($event)">
                           <div class="row">
                             <div class="col-md-6 mb-3">
                               <label for="firstName">Vezetéknév</label>
@@ -209,7 +209,7 @@
                                 value=""
                                 required
                               />
-                              <div *ngIf="checkoutForm.controls['firstName'].invalid && checkoutForm.controls['firstName'].dirty" class="invalid-feedback">
+                              <div class="invalid-feedback">
                                 Hibás vezetéknév!
                               </div>
                             </div>
@@ -223,7 +223,7 @@
                                 value=""
                                 required
                               />
-                              <div *ngIf="checkoutForm.controls['lastName'].invalid && checkoutForm.controls['lastName'].dirty" class="invalid-feedback">
+                              <div class="invalid-feedback">
                                 Hibás keresztnév!
                               </div>
                             </div>
@@ -241,10 +241,7 @@
                               placeholder="example@example.com"
                               required
                             />
-                            <div *ngIf="checkoutForm.controls['email'].invalid && checkoutForm.controls['email'].dirty" class="invalid-feedback">
-                              Hibás email cím!
-                            </div>
-
+                            <div class="invalid-feedback">Hibás email cím!</div>
                           </div>
 
                           <div class="mb-3">
@@ -256,7 +253,7 @@
                               placeholder="Fő utca 1"
                               required
                             />
-                            <div *ngIf="checkoutForm.controls['address'].invalid && checkoutForm.controls['address'].dirty" class="invalid-feedback">
+                            <div class="invalid-feedback">
                               Kérlek add meg a szállítási címedet
                             </div>
                           </div>
