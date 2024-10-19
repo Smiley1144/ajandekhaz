@@ -17,6 +17,7 @@ export class CartComponent {
   quantityOfProducts: number = 0;
   deliveryPrice: number = 1290;
   quantity: number = 1;
+  priceWithoutShipping: number = 0;
   constructor(private CartService: CartService, private cookieService: CookieService){}
 
   ngOnInit(): void {
@@ -84,6 +85,7 @@ loadCartFromCookies() {
 
   updateTotalPrice(): void {
     // Calculate the total price without adding delivery cost yet
+    this.priceWithoutShipping = this.cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
     this.totalPrice = this.cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
     // Hozzáadja a szállítási költséget
     // Ellenőrizzük, hogy szükség van-e szállítási költségre
