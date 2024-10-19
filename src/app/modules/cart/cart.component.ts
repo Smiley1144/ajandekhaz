@@ -1,3 +1,4 @@
+import { ZipCodeService } from './../../services/zip-code.service';
 import { CartService } from './../../services/cart.service';
 import { Component } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
@@ -18,7 +19,9 @@ export class CartComponent {
   deliveryPrice: number = 1290;
   quantity: number = 1;
   priceWithoutShipping: number = 0;
-  constructor(private CartService: CartService, private cookieService: CookieService){}
+  zipCode: string = '';
+  city: string = '';
+  constructor(private CartService: CartService, private cookieService: CookieService, private zipCodeService: ZipCodeService){}
 
   onSubmit(event: Event): void {
     const form = event.target as HTMLFormElement;
@@ -58,6 +61,28 @@ export class CartComponent {
       this.textInput = text;
     });
 
+  }
+
+  onZipCodeChange() {
+    if (this.zipCode.length === 4) {
+      console.log('Beírt irányítószám:', this.zipCode); // Ellenőrizd, hogy helyesen írta-e be a felhasználó
+      this.zipCodeService.getCityByZipCode(this.zipCode).subscribe(
+        (response) => {
+          console.log('API válasz:', response); // Ellenőrizd, hogy az API visszaadja-e az adatokat
+          if (response && response.places && response.places.length > 0) {
+            this.city = response.places[0]['place name'];
+          } else {
+            this.city = 'Város nem található';
+          }
+        },
+        (error) => {
+          console.error('API hiba:', error); // Itt jelenik meg, ha hibát kapsz
+          this.city = 'Város nem található';
+        }
+      );
+    } else {
+      console.log('Irányítószám hossza nem megfelelő:', this.zipCode.length); // Ellenőrizd, hogy elég hosszú az input
+    }
   }
 
   saveCartToCookies() {

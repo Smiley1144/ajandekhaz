@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FooterComponent } from './modules/footer/footer.component';
 import { DetailsComponent } from './modules/products/details/details.component';
 import { CookieService } from 'ngx-cookie-service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { CookieService } from 'ngx-cookie-service';
     WelcomePageComponent,
     SliderComponent,
     FooterComponent,
-    DetailsComponent
+    DetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +38,7 @@ import { CookieService } from 'ngx-cookie-service';
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]
