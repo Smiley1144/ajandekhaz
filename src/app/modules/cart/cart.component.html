@@ -197,7 +197,7 @@
 
                     <div class="row">
                       <div class="col-md-12 order-md-1">
-                        <form class="needs-validation" novalidate (ngSubmit)="onSubmit($event)">
+                        <form class="needs-validation" (ngSubmit)="onSubmit($event)" novalidate>
                           <div class="row">
                             <div class="col-md-6 mb-3">
                               <label for="firstName">Vezetéknév</label>
@@ -208,8 +208,10 @@
                                 placeholder=""
                                 value=""
                                 required
+                                [(ngModel)]="firstName"
+                                name="firstName"
                               />
-                              <div class="invalid-feedback">
+                              <div *ngIf="firstName === '' || firstName === null" class="invalid-feedback">
                                 Hibás vezetéknév!
                               </div>
                             </div>
@@ -222,8 +224,10 @@
                                 placeholder=""
                                 value=""
                                 required
+                                [(ngModel)]="lastName"
+                                name="lastName"
                               />
-                              <div class="invalid-feedback">
+                              <div *ngIf="lastName === '' || lastName === null" class="invalid-feedback">
                                 Hibás keresztnév!
                               </div>
                             </div>
@@ -240,8 +244,13 @@
                               id="email"
                               placeholder="example@example.com"
                               required
+                              [(ngModel)]="email"
+                              name="email"
                             />
-                            <div class="invalid-feedback">Hibás email cím!</div>
+                            <div *ngIf="email === '' || email === null" class="invalid-feedback">
+                              Hibás email cím!
+                            </div>
+
                           </div>
 
                           <div class="mb-3">
@@ -252,8 +261,10 @@
                               id="address"
                               placeholder="Fő utca 1"
                               required
+                              [(ngModel)]="address"
+                              name="address"
                             />
-                            <div class="invalid-feedback">
+                            <div *ngIf="address === '' || address === null" class="invalid-feedback">
                               Kérlek add meg a szállítási címedet
                             </div>
                           </div>
@@ -271,6 +282,7 @@
                                 required
                                 pattern="^[0-9]{4}$"
                                 name="zipCode"
+                                [(ngModel)]="zipCode"
                               />
                               <div class="invalid-feedback">
                                 Hibás irányítószám!
@@ -331,7 +343,6 @@
                             <button
                               class="btn btn-custom btn-lg btn-block"
                               type="submit"
-                              (click)="generateRandomNumber()"
                             >
                               Fizetek
                             </button>

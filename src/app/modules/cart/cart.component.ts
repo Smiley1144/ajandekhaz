@@ -22,23 +22,32 @@ export class CartComponent {
   zipCode: string = '';
   city: string = '';
   orderId: number | null = null;
+  firstName: string = '';
+  lastName: string = '';
+  email: string = '';
+  address: string = '';
 
   constructor(private CartService: CartService, private cookieService: CookieService, private zipCodeService: ZipCodeService){}
 
   onSubmit(event: Event): void {
+    event.preventDefault();  // Mindig megakadályozza az alapértelmezett form beküldést
     const form = event.target as HTMLFormElement;
-
+  
     // Ellenőrizzük a form érvényességét
     if (!form.checkValidity()) {
-      // Megakadályozzuk a form beküldését, ha érvénytelen
-      event.preventDefault();
-      event.stopPropagation();
+      // Hozzáadjuk a was-validated osztályt, hogy megjelenjenek a validációs hibák
+      form.classList.add('was-validated');
+      return;
     }
-
-    // Hozzáadjuk a was-validated osztályt, hogy megjelenjen az invalid-feedback
-    form.classList.add('was-validated');
+  
+    // Ha minden valid, végrehajtjuk a szükséges lépéseket
+    if (this.isValid()) {
+      this.generateRandomNumber();
+      console.log('A form érvényes és beküldésre került');
+    } else {
+      console.log('Hibás adatok, a form nincs beküldve');
+    }
   }
-
   ngOnInit(): void {
     // Először betöltjük a cookie-kból a kosár tartalmát
     this.loadCartFromCookies();
@@ -62,6 +71,15 @@ export class CartComponent {
     this.CartService.currentTextInput$.subscribe(text => {
       this.textInput = text;
     });
+
+  }
+
+  isValid(): boolean{
+    return this.firstName.trim() !== '' && 
+    this.lastName.trim() !== '' &&
+     this.email.trim() !== '' &&
+      this.address.trim() !== '' &&
+       this.zipCode.trim() !== '';
 
   }
 
